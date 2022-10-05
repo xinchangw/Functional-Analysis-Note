@@ -1,0 +1,259 @@
+\section{Hilbert Spaces}
+\subsection{Inner Product Space}
+\begin{definition}\ \\
+Let $E$ be a linear space over $\C$. An inner product 
+\begin{equation*}
+\inprod{\cdot}{\cdot}: E \times E \to \C     
+\end{equation*}
+is a function which has the following properties:
+\begin{enumerate}[label = (\alph*)]
+    \item $\inprod{x}{x} \geq 0,\ x \in E$ and $\inprod{x}{x} = 0$ \underline{if.f} $x = 0$.
+    \item $\inprod{ax + by}{z} = a\inprod{x}{z} + b \inprod{y}{z}$.
+    \item $\inprod{x}{y} = \overline{\inprod{y}{x}}, x,y \in E$.
+\end{enumerate}
+\end{definition}
+\begin{remark}
+    Inner products of spaces over $\R$ is defined similarly, but no complex conjugation in $(c)$.
+\end{remark}
+\begin{definition}[Orthogonality]\ \\
+$x,y \in E$ is orthogonal if $\inprod{x}{y} = 0$, denoted by $x \perp y$.
+\end{definition}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]\ \\
+$x,y \in E$, then $\abs{\inprod{x}{y}} \leq \inprod{x}{x}^{\frac{1}{2}} \inprod{y}{y}^{\frac{1}{2}}$.
+\end{theorem}
+\begin{proof}
+Define $Q(t)$ by $Q(t) = \inprod{x + ty}{x + ty} = \inprod{y}{y} t^2 + 2t \Re \inprod{x}{y} + \inprod{x}{x}$ if $t \in \R$. $Q(t) \geq 0$ if $t \in \R$. If $Q(t) = 0$, no more than one real root $\Rightarrow$ $[Re\inprod{x}{y}]^2 \leq \inprod{x}{x} \inprod{y}{y}$. The \underline{C-S Inequality} follows by choosing $\theta \in \R$ s.t. $\inprod{x}{y} = Re\inprod{x e^{i \theta}}{y}$. (as $\inprod{x e^{i \theta}}{x e^{i \theta}} = (x e^{i\theta})^\trs (\bar{x e^{i\theta}}) = \inprod{x}{x}$)
+\end{proof}
+
+
+\begin{corollary}\ \\
+The function $x \to \norm{x} = \inprod{x}{x}^{\frac{1}{2}}$ is a norm on $E$.
+\end{corollary}
+\begin{proof}\ \\
+Triangle inequality is a consequence of the \underline{C-S Inequality}. 
+\begin{align*}
+    \norm{x + y}^2 &= \inprod{x+y}{x+y}\\ &= \norm{x}^2 + 2 Re\inprod{x}{y} + \norm{y}^2\\ &\underbrace{\leq}_{\text{C-S}} \norm{x}^2 + 2 \norm{x} \norm{y} + \norm{y}^2\\ &= [\norm{x} + \norm{y}]^2
+\end{align*}
+Other conditions are easy to check.
+\end{proof}
+
+\begin{examples}\ 
+\begin{itemize}
+    \item The space $\mathit{l}_2$ of square summable sequences. $x = (x_1,x_2,\dots),\ y = (y_1,y_2,\dots)$, and $\inprod{x}{y} = \sum_{j = 1}^\infty x_j \bar{y}_j$.
+    \item Similarly with $\Ls_2(\Omega,\Sigma,\mu)$, $f,g \in \Ls_2(\Omega, \Sigma, \mu),\ \inprod{f}{g} = \int_\Omega f(x )\bar{g}(x) d\mu(x)$.
+    \item The space of $m \times n$ matrices $A = (a_{i,j}),\ 1 \leq i \leq m,\ 1 \leq j \leq n$. $\inprod{A}{B} = \trace{(A B^*)}$, where $B^* = \text{Hermitian adjoint of } B$. $B = \{b_{i,j}\}$ then $B^* = \{b_{i,j}^*\}$ s.t. $b_{i,j}^* = \overline{b}_{j,i}$. The norm corresponds to this inner product is $\norm{A}_{HS} = (\sum_{ij = 1}^\infty \abs{a_{ij}}^2)^{\frac{1}{2}}$, known as the \underline{Hilbert-Schmidt norm}.
+\end{itemize}
+\end{examples}
+
+\np For an inner product space, the inner product can be expressed in terms of the norm.
+
+
+\begin{proposition}\ \\
+Let $E$ be an inner product space, then 
+\begin{enumerate}[label = (\alph*)]
+    \item $\norm{x + y}^2 + \norm{x - y}^2 = 2\norm{x}^2 + 2 \norm{y}^2$ (Parallelogram Law)
+    \item $\inprod{x}{y} = \frac{1}{4} \{\norm{x + y}^2 - \norm{x - y}^2 + i \norm{x + iy}^2 - i \norm{x - iy}^2\}$ (Polarization Inequality)
+\end{enumerate}
+\end{proposition}
+\begin{proof}\
+\begin{enumerate}[label = (\alph*)]
+    \item \begin{align*}
+        \norm{x+y}^2 + \norm{x - y}^2 &= \inprod{x + y}{ x + y} + \inprod{x - y}{x - y}\\
+        &= \inprod{x}{x} + \inprod{y}{y} +  \inprod{x}{y} + \inprod{y}{x} + \inprod{x}{x} + \inprod{y}{y} - \inprod{x}{y} - \inprod{y}{x}\\
+        &= 2 \norm{x}^2 + 2 \norm{y}^2
+    \end{align*}
+    \item \begin{align*}
+        RHS &= \frac{1}{4} \{\norm{x + y}^2 - \norm{x - y}^2 + i \norm{x + iy}^2 - i \norm{x - iy}^2\}\\
+        &= \frac{1}{4} [\inprod{x+y}{x+y} - \inprod{x - y}{x - y} + i \inprod{x + iy}{x + iy} - i \inprod{x - iy}{x - iy}]\\
+        &= \frac{1}{4}[2 \inprod{x}{y}  + 2 \inprod{y}{x} + 2i\inprod{x}{iy} + 2 i \inprod{iy}{x}]\\
+        &= \inprod{x}{y} = LHS
+    \end{align*}
+\end{enumerate}
+\end{proof}
+\begin{remark}
+    Polarization identity shows that the function $x \to \norm{x}^2$ determines the inner product.
+\end{remark}
+
+
+\vspace{12pt}
+\subsection{Hilbert Space}
+\begin{definition}\ \\
+A \underline{complete inner product space} is called a \underline{Hilbert space}. 
+\end{definition}
+\begin{remark}
+    Have already seen that $\ell_2$ and $\Ls^2 (\Omega,\Sigma,\mu)$ are complete. They are \underline{Hilbert spaces}.
+\end{remark}
+\begin{remark}
+    The key notion in \underline{Hilbert space} is \underline{orthogonality}.
+\end{remark}
+
+\begin{definition}\ \\
+Let $A \subset \Hs := \text{ \underline{Hilbert space }}$. The \underline{orthogonal complement} $A^{\perp}$ of $A$ is 
+\begin{equation*}
+    A^\perp := \{x \in \Hs: \inprod{x}{y} = 0,\ \forall\ y \in A\}.
+\end{equation*}
+\end{definition}
+\begin{remark}\ \\
+    If $A^\perp$ is a closed linear subspace of $\Hs$, then $A^\perp$ is also a \underline{Hilbert space}, where closure follows from continuity of the function $x \to \inprod{x}{y},\ x \in \Hs$.
+\end{remark}
+
+
+\begin{theorem}[Orthogonality Principle]\ \\
+Assume $E \subset \Hs$ is a closed linear subspace of the \underline{Hilbert space} $\Hs$ and $x \in \Hs$. Then
+\begin{enumerate}[label = (\alph*)]
+    \item $\exists$ a unique closed point $y = P_E x \in E$ to x. (i.e. $\norm{x - P_E x} = \inf{\norm{x - y'}},\ y' \in E$)
+    \item The point $y = P_E x \in E $ is the unique vector s.t. $x - y \in E^\perp$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}\ \\
+Note the function $y' \to \norm{x - y'},\ y' \in E$ is convex. We expect a minimizing $y'$, to show whose existence we typically need:
+\begin{itemize}
+    \item Compactness properties.
+    \item Non-degeneracy Properties for Uniqueness.
+\end{itemize}
+Here we will use \underline{Parallelogram Law} so \underline{Compactness} is no longer needed.
+\begin{itemize}
+    \item Let $(y_n) \in E,\ n=1,2,\dots$ be a minimizing sequence (i.e. $\lim_{n \to \infty} \norm{x - y_n} = \inf_{y' \in E} \norm{x - y'} = d$). Note
+\begin{equation*}
+    \norm{y_n - y_m}^2 + 4 \norm{x - \frac{1}{2} (y_n + y_m)}^2 = 2 \norm{x - y_n}^2 + 2 \norm{x - y_m}^2
+\end{equation*}
+As $n,m \to \infty$, RHS $\to 4d^2$. \\
+$\frac{1}{2} (y_n + y_m) \in E$ $\Rightarrow$ $\norm{x - \frac{1}{2} (y_n + y_m)} \geq d$. Conclude $\lim_{m\to \infty} \sup_{m \geq n} \norm{y_n - y_m}^2 = 0$ $\Rightarrow$ $(y_n)$ is a Cauchy sequence. Since $\Hs$ is complete, we have $y_n \to y_\infty \in E,\ \norm{x - y_\infty} = d$. Use the fact that $E$ is closed, set $P_E x = y_\infty$. $y_\infty$ is unique: if $\norm{x - y_\infty} = \norm{x - y_\infty'} = 0$, by \underline{Parallelogram Law}, $\norm{y_\infty - y_\infty'} = 0$. Hence $P_E x$ is uniquely defined.
+    \item Show $P_E x$ is the unique vector $y \in E$ s.t. $x - y \in E^\perp$. Let $y' \in E$ and $Q(t)$ be the quadratic
+    \begin{align*}
+        Q(t) &= \inprod{x - P_E x + ty'}{x - P_E x + t y'} \\&= \norm{x - P_E x + ty'}^2
+    \end{align*}
+    $t \to Q(t)$ has a \underline{strict} minimum at $t = 0$\\ 
+    $\Rightarrow$ $Q'(0) = 0,\ \Re{\inprod{x - P_E x}{y'}} = 0,\ \forall\ y' \in E$ $\Rightarrow$ $\inprod{x - P_E x}{y'} = 0,\ \forall\ y' \in E$.\\
+    $\Rightarrow$ $x - P_E x \in E^\perp$.\\
+    Finally $P_E x \in E$ is the unique vector s.t. $x - P_E x \in E^\perp$ because for such $P_E x$, we have 
+    \begin{equation*}
+        Q(t) = \norm{x - P_E x}^2 + t^2 \norm{y'}^2,\ \forall\ y' \in E.
+    \end{equation*}
+    and thus the solution is unique.
+\end{itemize}
+\end{proof}
+\begin{remark}\ \\
+    The minimizer for the function $y' \to \norm{x - y'},\ y' \in E$ is characterized by the \underline{orthogonality condition} $x - y \perp E$ for some $y \in E$.
+\end{remark}
+
+\begin{definition}[Orthogonal Projection]\ \\
+Let $\Hs$ be a \underline{Hilbert space}, $E \subset \Hs$ a closed subspace. The projection $P_E: \Hs \to E$ is given by $x \to P_E x$, where $P_E x$ is defined uniquely to be $x - P_E x \in E^\perp$. 
+\end{definition}
+
+\begin{definition}\ \\
+A mapping $A: \Bs \to \Bs$ on a \underline{Banach space} $\Bs$ is linear if $A(ax + by) = a\ Ax + b\ By,\ x,y \in \Bs,\ a,b \in \C$. The operator $A$ is \underline{bounded} if $\norm{A} = \sup_{\norm{x} = 1} \norm{Ax} < \infty$.
+\end{definition}
+\begin{remark}\ \\
+    Note that $\norm{Ax} \leq \norm{A} \norm{x},\ x \in \Bs$. $P_E$ is a \underline{linear bounded operator} $P_E: \Hs \to E$ with the properties $P^2_E = P_E$.\\
+    $\norm{x}^2 = \norm{P_E x}^2 + \norm{(I - P_E) x}^2$ since $(I - P_E)x \perp P_E x$ $\Rightarrow$ $\norm{P_E} \leq 1,\ \norm{I - P_E} \leq 1$. In fact, $\norm{P_E} = \norm{I - P_E} = 1$, as $I - P_E$ is the orthogonal projection onto $E^\perp$.
+\end{remark}
+
+\vspace{12pt}
+\subsection{Orthogonal Systems}
+
+\begin{definition}\ \\
+For a sequence $\{x_k\}_{k \geq 1}$ of non-zero vectors in \underline{Hilbert Space} $A$. We say it is \underline{orthogonal} if $\inprod{x_k}{x_l} = 0$ for $k \neq l$. If in addition $\norm{x_k} = 1,\ l=1,2,\dots$, then the system is \underline{orthonormal}.
+\end{definition}
+
+\begin{examples}\
+\begin{enumerate}[label = (\alph*)]
+    \item $x_k = (0,0,\dots,\underbrace{1}_{\text{kth}},0,\dots,0) \in \ell_2,\ k = 1,2,\dots$ is O-N in $\ell_2$.
+    \item For $L_2([-\pi,\pi])$, $\ell_k (t) = \frac{1}{\sqrt{2\pi}} e^{ikt},\ k \in \E$ is O-N. It is the Fourier basis associated with Fourier series 
+    $$f(t) = \sum_{k =-\infty}^\infty a_k \frac{1}{\sqrt{2\pi}} e^{ikt},$$
+    where $a_k = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(t) e^{-ikt} dt$.
+    \begin{remark}\ \\
+    Can generalize Fourier series to any Hilbert space $\Hs$. Let $\{x_k\}_{k \geq 1}$ be an O-N set in $\Hs$. For $n = 1,2,\dots$, can define 
+    $$S_n(x) = \sum_{k = 1}^n \inprod{x}{x_k} x_k,\ x \in \Hs,\ S_n: \Hs \to E_n,$$
+    where $E_n = \text{span}\{x_1,\dots,x_n\}$. $S_n$ is a linear operator $S_n = P_{E_n} = \underline{\text{ orthogonal projection onto } E_n}$ since $\inprod{x - S_n(x)}{x_k} = 0,\ k = 1,\dots,n$. $S_n \in E_n,\ x - S_n(x) \perp E_n$. Note that
+    $$\norm{S_n x}^2 = \sum_{k=1}^n \abs{\inprod{x}{x_k}}^2,\ S_n = P_{E_n},$$ 
+    we have $\norm{P_{E_n}x}^2 \leq \norm{x}^2$ $\Rightarrow$ $\sum_{k = 1}^\infty \abs{\inprod{x}{x_k}}^2 \leq \norm{x}^2$ for $x \in \Hs$, which is called \textit{Bessel's Inequality}.
+    \end{remark}
+\end{enumerate}
+\end{examples}
+
+\vspace{6pt}
+\begin{theorem}\ \\
+Let $\{x_k: k \geq 1\}$ be an O-N sequence in $\Hs$. Then the corresponding Fourier expansion $S_n(x) = \sum_{k = 1}^n \inprod{x}{x_k} x_k$ converges. i.e. $\lim_{n \to \infty} S_n x = S_\infty x$ exists for $x \in \Hs$. 
+\end{theorem}
+\begin{proof}\ \\
+It suffices to show sequence $S_n x,\ n = 1,2,\dots$ is Cauchy for each $x \in \Hs$. We have 
+$$\norm{S_n x - S_m x}^2 = \sum_{k = m+1}^n \abs{\inprod{x}{x_k}}^2.$$ 
+By Bessel's Inequality, $\forall\ \ep > 0$, 
+\begin{equation*}
+    \exists\ m(\ep) \st \sum_{k = m(\ep) + 1}^\infty \abs{\inprod{x}{x_k}}^2 \leq \ep \Rightarrow \norm{S_n x - S_{m(\ep)x}}^2 < \ep \text{ if } n > m(\ep)
+\end{equation*} 
+Hence $S_n x,\ n \geq 1$ is Cauchy \imply $\lim_{n \to \infty} S_n x = S_\infty x \in \Hs$. $S_\infty = P_{E_\infty}$, where $$E_\infty = \text{ closure of the linear space generated by the sequence } \{x_k\}_{k \geq 1}.$$
+\begin{remark}\ \\
+    $S_n = P_{E_n}$, $E_n = $ space spanned by $\{x_1,\dots,x_n\}$. $\exists\ S_\infty: \Hs \to \Hs$, $\lim_{n \to \infty} \norm{S_\infty (x) - S_n(x)} = 0,\ x \in \Hs$, and $S_\infty = P_{E_\infty}$ where $E_\infty = $ closure of the space spanned by $\{x_1,\dots,x_n\}$. Here we take closure because there are non-closed subspace of a Hilbert space.
+\end{remark}
+\begin{example}\ \\
+Take $V$ to be the space of sequences $(a_1,a_2,\dots)$ of real numbers with norm $\norm{(a_1,a_2,\dots)} = \summ{k=1}{\infty} \abs{a_k}$. Consider the subspace of $W \subset V $ consisting of sequences with only finitely many of $a_1,a_2,\dots$ being non-zero. Then $A_k=(1,\frac{1}{2},\dots,\frac{1}{2^k},0,0,\dots), k=1,2,\dots,$ gives a sequence of elements of W, but the limit of this sequence is not in W.
+\end{example}
+\end{proof}
+
+
+
+\begin{definition}\ \\
+A system of vectors $\{x_k\}_{k \geq 1}$ in \underline{Hilbert space} $\Hs$ is \underline{complete} if the space spanned by $\{x_k\}_{k \geq 1}$ is \underline{dense} in $\Hs$.
+\end{definition}
+\begin{remark}\ \\
+    If an \underline{O-N} set $\{x_k\}_{k \geq 1}$ is complete then we have $E_\infty = \Hs,\ P_{E_\infty} = I$ $\Rightarrow$ $x = \sum_{k=1}^\infty \inprod{x}{x_k}x_k,\ x \in \Hs$. This is \underline{Fourier Inversion Formula}. 
+\end{remark}
+\begin{remark}\ \\
+Recall $\norm{x}^2 = \norm{P_{E_n} x}^2 + \norm{(I - P_{E_n}) x}^2$. Let $n \to \infty$ $\Rightarrow$ $\norm{x}^2 = \lim_{n \to \infty} \norm{P_{E_n} x}^2 = \sum_{k=1}^\infty \abs{\inprod{x}{x_k}}^2$. $\norm{x}^2 = \sum_{k=1}^\infty \abs{\inprod{x}{x_k}}^2$ preserves identity. 
+\end{remark}
+
+\begin{definition}\ \\
+A metric space is separable if it contains a countable dense subset.
+\end{definition}
+\begin{remark}\ \\
+For Banach space separability follows from finding a countable set of vectors $\{x_k\}_{k \geq 1}$ s.t. span of the $\{x_k\}_{k \geq 1}$ is dense in $E$.
+\end{remark}
+
+
+\vspace{12pt}
+\subsection{Gram-Schmidt Orthogonalization}
+
+\np Suppose $x_1,x_2,\dots \in \Hs$ is a set of vectors and $E_n = \text{span}\{x_1,\dots,x_n\}$. Then we can find an \underline{O-N} set $\{y_k\}_{k \geq 1}$ s.t. $E_n = \text{span}\{y_1,\dots,y_{m(n)}\}$ where $m(n) \leq n$. Set $y_1 = \frac{x_1}{\norm{x_1}}$, $y_n = \frac{(I - P_{E_{n-1}} ) x_n}{\norm{(I - P_{E_{n-1}}) x_n}}$ if $x_n \not\in E_{n-1}$, i.e. $E_{n-1}$ is properly contained in $E_n$.
+\begin{remark}\ \\
+Proving completeness of a set of vectors $\{x_k\}_{k \geq 1}$ in $\Hs$ can be non-trival.
+\end{remark}
+
+\begin{examples}\
+\begin{enumerate}[label = (\alph*)]
+    \item Haar basis for $\Ls^2([0,1])$: Let $h: (0,1) \to \R$ s.t.
+    \begin{equation*}
+        h(t) = 1 \text{ for } t < \frac{1}{2},\ h(t) = -1 \text{ for } \frac{1}{2} < t < 1.
+    \end{equation*}
+     Extend $h(\cdot)$ by zero outside $(0,1)$ $\Rightarrow$ $h: \R \to \R$, $h(t) = 0$ if $t \notin (0,1)$. The function $t \to h(2^k t)$ has support in interval $0 < t < 2^{-k}$. Move this support to $l 2^{-k} < t < (l+1)2^{-k}$. By translation, set 
+     $$h_{k,l} (t) = h(2^kt - l),\ l=0,1,2,\dots, 2^k -1.$$ 
+     The constant function plus functions $h_{k,l},\ k=0,1,\dots,\ 0 \leq l \leq 2^k-1$ are a complete orthogonal set for $\Hs = \Ls^2([0,1])$.
+    \begin{proof}\ \\
+    The span of the functions includes characteristic functions $\1_F$ for any dyadic intervals $[2^{-k} l, 2^{-k} (l+1)],\ l=0,\dots,2^{k}-1,\ k=1,2,\dots$. If the set is \underline{not} complete, then $\exists\ f \in \Ls^2([0,1])$ s.t. $\int_F f dt = 0$ for all dyadic intervals $F$ and $f$ does not vanish a.e.. Can approximate any measurable sets $E \subset (0,1)$ by a union of dyadic intervals. An easy way to see this is $\{F \in \Bs: \int_F f dt = 0\} = \Bs((0,1))$. Then observe dyadic intervals generate all open intervals. Hence $\int_F f dt = 0$ for all measurable $F \subset (0,1)$. Let $F_+ = \{t \in (0,1): f(t) > 0\}$, if $m(F_+) > 0$, then $\int_{F_+} f dt > 0$. Hence $m(F_+) = 0$, and similarly can show $m(F_-) = 0$ \imply $f = 0$ a.e.. Complete the proof. 
+    \end{proof}
+    
+    \item Fourier basis $e_k(t) = \frac{1}{\sqrt{2\pi}} e^{ikt},\ k \in \R,\ -\pi < k < \pi$ is complete in $\Ls^2([-\pi,\pi])$.
+    
+    \begin{proof}\ \\
+    Use \underline{Stone-Weierstrass Thm}. Application to Fourier series. All $e_k(\cdot)$ are in $C([-\pi,\pi])$, i.e. continuous functions $f: [-\pi,\pi] \to \C$. $C([-\pi,\pi])$ is a Banach space with sup norm $\norm{f} = \sup_{t \in [-\pi,\pi]} \abs{f(t)}$. \underline{Stone-Weierstrass Thm} implies density of the $e_k(\cdot),\ k \in \R$ in $C([-\pi,\pi])$. Completeness in $\Ls^2([-\pi,\pi])$ follows from the density of continuous functions in $\Ls^2([-\pi,\pi])$. 
+    \end{proof}
+    \begin{remark}[Stone-Weierstrass Theorem]\ \\
+    Suppose $f$ is a continuous real-valued function defined on the real interval $[a, b]$. For every $\ep > 0$, there exists a polynomial $p$ such that for all $x \in [a,b]$, we have $\abs{f(x) - p(x)} < \ep$, or equivalently, the supremum norm $\norm{f - p}_\infty$ < $\ep$.
+    \end{remark}
+\end{enumerate}
+\end{examples}
+
+
+
+
+
+
+
+
+
+
+
+
+

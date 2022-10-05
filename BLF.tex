@@ -1,0 +1,979 @@
+\section{Bounded Linear Functionals}
+\begin{definition}\ \\
+Let $E = \underline{\text{Linear space over } \R \text{ or } \C}$. A linear functional on $E$ is a linear operator $f: E \to \R \text{ or } \C$ s.t. 
+$$f(ax + by) = af(x) + bf(y),\ x,y \in E,\ a,b \in \R\text{ or }\C.$$ 
+We say $f(\cdot)$ is a \underline{Bounded Linear Functional} if 
+$$\norm{f} = \sup_{\norm{x} = 1} \abs{f(x)} < \infty.$$ 
+By dilation and additive, properties of $f(\cdot)$ boundedness implies $\abs{f(x - y)} \leq \norm{f} \norm{x - y},\ x,y \in E$. Hence, $f(\cdot)$ is continuous and in fact Lipschitz continuous. Conversely, if a linear functional is continuous then it is bounded. 
+\end{definition}
+\begin{proof}\ \\
+Suppose $f(\cdot)$ is not bounded $\Rightarrow$ $\exists$ sequence $(x_n) \subset E$ s.t. $\abs{f(x_n)} \geq n \norm{x_n},\ n=1,2,\dots$. By linearity, $\abs{f(\frac{x_n}{n \norm{x_n}})} \geq 1,\ n=1,2,\dots$, but $\lim_{n \to \infty} \frac{x_n}{\norm{x_n}} = 0$ and $f(0) = 0$ $\Rightarrow$ $f(\cdot)$ is not continuous at $0$.
+\end{proof}
+
+\begin{definition}\ \\
+    Let $E$ be a normed space, then space of all \underline{bounded linear functionals} on $E$ is known as the \underline{dual space $E^*$ of $E$}. It is also a normed space with norm $\norm{f} = \sup_{\norm{x} = 1} \abs{f(x)}$, and in fact a Banach space.
+\end{definition}
+
+\begin{definition}\ \\
+    Let $E$ be a linear space and $H \subset E$ a subspace. We say $H$ is a hyperplane if $\text{codim}(H) = 1$, i.e. $\dim(\frac{E}{H}) = 1$. 
+\end{definition}
+
+\np \textbf{\underline{Goal:}} Make an equivalence between \underline{Bounded Linear Functionals} on $E$ and \underline{closed} hyperplanes in $E$. Does there exists a non closed hyperplane? (Not in finite dimensions) Another question is that does there exists a subset $F \subset \R$ which is not Lebesgue
+measurable?\\ 
+The answers are yes in both cases. However, construction uses axiom of choice.
+
+\begin{proposition}\label{4.4}\ \\
+$E$ a linear space,
+\begin{enumerate}[label = (\alph*)]
+    \item For every linear functional $f$ on $E$, $ker(f)$ is a hyperplane in $E$.
+    \item  If $f,g\neq 0$ are linear functionals on $E$ s.t. $ker(f) = ker(g)$, then $f = ag$ for some $a \neq 0$. 
+    \item For every hyperplane $H \subset E$, $\exists$ a linear functional $f \neq 0$ on $E$ s.t. $ker(f) = H$.
+    \item If $E$ is a Banach space, then $f(\cdot)$ is Bounded \underline{if.f} $ker(f) = H$ is closed.
+\end{enumerate}
+\end{proposition}
+\begin{proof}\ 
+\begin{enumerate}[label = (\alph*)]
+    \item Let $x,y \notin \ker(f)$ so $f(x), f(y) \neq 0$. Hence $\exists$ scalar $\lambda \neq 0$ s.t. $f(x) = \lambda f(y)$ $\Rightarrow$ $x - \lambda y \in \ker(f)$.\\
+    Hence, $[x],[y] \in \frac{E}{\ker(f)}$, then $[x] = \lambda[y] \Rightarrow \dim[\frac{E}{\ker(f)}] = 1$\\
+    $f$ is bounded $\Rightarrow$ f continuous $\Rightarrow$ $\ker(f) = f^{-1}(0)$ closed. 
+    \item Consider the induced functional $\Tilde{f}, \Tilde{g}: \frac{E}{H} \to \R\text{ or } \C$, $H = \ker(f) = ker(g)$.\\ We have $\dim[\frac{E}{H}] = 1$ \imply $\Tilde{f} = a \Tilde{g}$ for some $a \neq 0$ \imply $f = ag$.
+    \item Assume $\dim[\frac{E}{H}] = 1$ \imply $\frac{E}{H} = \{a [x_0]: a \in \C \text{ or } \R\}$ for some $x_0 \in E$.\\
+    For $x \in E$, we have $[x] = a(x) [x_0]$ for some $a(x) \in \R \text{ or } \C$. Define $f(x) = a(x)$, then $f$ is linear and $\ker(f) = H$. Assume $E$ a Banach space and $H$ closed, we have $\dim(\frac{E}{H}) = 1$. Recall that $\frac{E}{H}$ is also a Banach space with norm
+    $$\norm{[x]} = \inf_{y \in H} \norm{x + y}, x\in E $$
+    Let $\Tilde{f}$ be a linear functional on $\frac{E}{H}$. Then we have $\dim(\frac{E}{H})$ finite \imply $\Tilde{f}$ continuous \imply $\abs{\Tilde{f}([x])} \leq A \norm{[x]},\ \forall\ x \in E$. Define $f(x) = \Tilde{f}([x]),\ x \in E$, then $\ker(f) = H$ and $\abs{f(x)} \leq A \norm{[x]} \leq A \norm{x}$.
+\end{enumerate}
+\begin{remark}
+Recall "Every linear mapping on finite-dimensional vector space is continuous".
+\end{remark}
+\end{proof}
+
+
+
+\vspace{12pt}
+\subsection{Riesz Representation Theorem}
+
+\begin{theorem}[Riesz Representation Theorem]\label{RRT}\ \\
+Let $\Hs$ be a Hilbert space.
+\begin{enumerate}[label = (\alph*)]
+    \item For every $y \in \Hs$, the fucntion $f(x) = \inprod{x}{y},\ x \in \Hs$ is a bounded linear functional on $\Hs$.
+    \item If $f: \Hs \to \C \text{ or } \R$ is a bounded linear functional on $\Hs$, then $\exists\ y \in \Hs$ s.t. $f(x) = \inprod{x}{y},\ x\in \Hs$. Hence the dual $\Hs^*$ of $\Hs$ is isometric to $\Hs$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}\
+\begin{enumerate}[label = (\alph*)]
+    \item It follows from Cauchy-Schwarz s.t.
+    \begin{equation*}
+        \abs{f(x)} = \abs{\inprod{x}{y}} \leq \norm{x} \norm{y} 
+    \end{equation*}
+    and we have $\norm{f} = \norm{y}$ by setting $x = \frac{y}{\norm{y}}$. 
+    \begin{remark}\ \\
+    In this case, the supremum of norm is attained by $\norm{f} = \sup_{\norm{x} = 1} \abs{f(x)} = f(\frac{y}{\norm{y}})$. It is also true for any \underline{finite} dimensional space, since unit ball is compact. In general it is not true for $\infty$-dimensional Banach spaces where the unit ball is not compact.
+    \end{remark}
+    \item Let $f: \Hs \to \R \text{ or } \C$ be a bounded linear functional on $\Hs$. Let $H = \ker(f)$, and $H$ is closed.\\ Let $H^\perp$ be orthogonal complement of $H$ s.t. $\Hs = H \bigoplus H^\perp$. We have $\dim[\frac{\Hs}{H}] = 1$ \imply $\dim(H^\perp) = 1$.\\
+    Therefore, we can write
+    \begin{equation*}
+        \Hs = H + \vspan{x_0},\ \text{ for some } y_0 \in H^\perp.
+    \end{equation*}
+    Consider the map
+    \begin{equation*}
+        g(x) := \inprod{x}{y_0},
+    \end{equation*}
+    by part (a) we have
+    \begin{equation*}
+        g \in \Hs^*,\ \ker{g} = \ker{f}.
+    \end{equation*}
+    Therefore, by \hyperref[4.4]{Proposition 4.4}, we have $f = ag$ for some constant $a$, and it follows that
+    \begin{equation*}
+        f(x) = ag(x) = \inprod{x}{a y_0}.
+    \end{equation*}
+    Complete the proof.
+\end{enumerate}
+\end{proof}
+
+
+\begin{theorem}[Radon-Nikodym Theorem]\label{R-N thm}\ \\
+Let $\mu,\nu$ be two $\sigma$-finite measures s.t. $\nu \ll \mu$, i.e. $\nu$ is \underline{absolutely continuous} w.r.t. $\mu$. (i.e. $\mu(A) = 0$ \imply $\nu(A) = 0$) Then $\exists\ g \geq 0$ s.t. $g$ is $\mu$-integrable and $\nu(A) = \int_A g d\mu$ for measurable $A$, where $g$ is referred to as R-N Derivative $g = \frac{d\nu}{d \mu}$.
+\end{theorem}
+\begin{proof}\ \\
+Consider the linear functional $F: \Ls^2(\mu) \to \R \text{ or } \C$ s.t. 
+\begin{equation*}
+    F(f) = \int_\Omega f d\mu.
+\end{equation*}
+Then we have $\norm{F(f)} \leq \norm{f}_2 \mu(\Omega)^{\frac{1}{2}}$ by H\"older inequality. $F$ is also a bounded linear functional on $\Ls^2(\mu + \nu)$, hence, the \hyperref[RRT]{Riesz Representation Theorem} implies $\exists\ h \in \Ls^2(\mu+\nu)$ s.t.
+$$F(f) = \int f h d(\mu+\nu)$$ 
+for $f \in \Ls^2(\mu + \nu)$, i.e. 
+\begin{equation}
+    \int_\Omega f d\mu = \int_\Omega fh d\mu + \int_\Omega fh d\nu.\label{eq:4.1}
+\end{equation} 
+Rearranging terms, we have
+\begin{equation}
+    \int_\Omega fh d\nu = \int_\Omega f(1 - h) d\mu.\label{eq:4.2}
+\end{equation} 
+Let $A \subset \Omega$, $A$ measurable, set $f = \frac{1}{h} \1_A$, we have $\nu(A) = \int_A  g d\mu,\ g = \frac{1-h}{h}$ \imply $g = \frac{d\nu}{ d \mu}$. It remains to show this is well-defined, i.e. $h \neq 0$.
+\begin{claim}
+$0 < h \leq 1$ a.e. \\
+Note $\mu(A) = 0 \Leftrightarrow \mu(A) + \nu(A) = 0$. Let $A = \{h \leq 0\},\ f = \1_A$. \hyperref[eq:3.1]{Equation 3.1} implies that we have 
+\begin{equation*}
+    \int_A h [d\mu + d\nu] \leq 0 \Rightarrow \mu(A) = 0 \Rightarrow h > 0\ \mu-a.e.
+\end{equation*}\\
+To show $h \leq 1$, set $B = \{h > 1\}$, and let $f = \1_B$. \hyperref[eq:4.1]{Equation 4.1} implies 
+\begin{equation*}
+    \mu(B) = \int_B h [d\mu + d\nu] > \mu(B) \text{ unless } \mu(B) = 0
+\end{equation*}
+which shows that $h \leq 1$.
+\end{claim}
+Now that we know $0 < h \leq 1$, we have \hyperref[eq:4.2]{Equation 4.2} holds for all $f \geq 0,\ f \in \Ls^2(\mu + \nu)$. By using Monotone Convergence Theorem, we can conclude that \hyperref[eq:4.2]{Equation 4.2} holds for all $f \geq 0$ (Thus not restrict on finite measure $\mu,\nu$, but extend to $\sigma$-finite), and both sides could be $+\infty$. Now can plug in $f = \frac{1}{h}\1_A$ to get the result.\\ 
+\end{proof}
+\begin{remark}\ \\
+R-N derivative $\frac{d\nu}{d\mu}$ is \underline{unique} since $\int_A g d\mu = 0$ for all $\mu$-measurable $A$ \imply $g = 0$ $\mu$-a.e
+\end{remark}
+
+\begin{remark}\ \\
+For $\Hs = \text{Hilbert space}$, \hyperref[RRT]{Riesz Representation Theorem} identifies the dual space $\Hs^*$ and can imply R-N Theorem.
+\end{remark}
+
+\begin{corollary}\ \\   
+Consider spaces $\Ls^p(\Omega, \mu)$ for
+$1 \leq p < \infty$. R-N Theorem implies dual of $\Ls^p(\Omega, \mu)$ is $\Ls^{p'}(\Omega, \mu)$, where $\frac{1}{p} + \frac{1}{p'} = 1$ (also for $p=1,\ p' = +\infty$).
+\end{corollary}
+\begin{proof}\
+\begin{itemize}
+    \item Easy part:\\
+    $g \in \Ls^{p'}$ induces a bounded linear functional on $\Ls^p$ (\hyperref[RRT]{Riesz Representation Theorem}) by setting 
+    \begin{equation*}
+        F(f) = \int_\Omega fg d\mu.
+    \end{equation*} 
+    Use H\"older inequality, we get
+    \begin{equation*}
+        \abs{F(f)} \leq \norm{f}_p \norm{g}_{p'},\ \norm{F} = \norm{g}_{p'}    
+    \end{equation*} 
+    by choosing $f = \abs{g}^{p' - 1} \frac{\bar{g}}{\abs{g}}$, since 
+    \begin{equation*}
+        F(f) = \int_\Omega \abs{g}^{p'} d\mu = \norm{g}_{p'}^{p'}
+    \end{equation*}
+    From $\frac{1}{p} + \frac{1}{p'} = 1$ \imply $p' - 1 = \frac{p'}{p}$, we have 
+    \begin{equation*}
+        \norm{f}_{p}^p = \int \abs{f}^p d\mu = \int \abs{g}^{p'} d\mu = \norm{g}_{p'}^{p'}\ \Rightarrow\ \norm{f}_p = \norm{g}_{p'}^{p'/p} = \norm{g}_{p'}^{p' - 1}
+    \end{equation*}
+    which implies
+    \begin{equation*}
+      \norm{g}_{p'}^{p'} = \norm{g}_{p'} \norm{f}_p^p\ \Rightarrow\ \norm{F} = \norm{g}_{p'}.  
+    \end{equation*}
+    \begin{remark}
+    Note $\sup_{\norm{f} = 1} \abs{F(f)}$ is attained for $1 < p < \infty$ with $f = g^{p'-1} \frac{\bar{g}}{\abs{g}}$, which shows $F$ is bounded and 
+    $$\Ls^{p'}(\Omega,\Sigma, \mu) \subset \text{ dual of } \Ls^p(\Omega, \Sigma, \mu).$$ The supremum is also attained when $p = \infty$, $g \in \Ls^1$ and let $f = \frac{\bar{g}}{\abs{g}}$. The supremum is not attained when $p = 1$, $g \in \Ls^\infty$. Let 
+    \begin{equation*}
+        F(f) = \int fg d\mu.
+    \end{equation*}
+    If $g(\cdot)$ is continuous on $\R$ with unique maximum, then $\sup_{\norm{f} = 1} \abs{F(f)}$ is not attained.  
+    \end{remark}
+    \begin{proof}[Summary]\ \\
+    If $1 \leq p \leq \infty$, $\Ls^{p'}$ is contained in the dual of $\Ls^p$.\\ 
+    If $1 < p \leq \infty$, then $\sup_{\norm{f}_p = 1} \abs{F(f)}$ is attained.\\ 
+    For $p = 1$, the supremum is not attained.
+    \end{proof}
+    \item For $E = \Ls^p(\Omega,\Sigma,\mu)$ with $1 \leq p < \infty$, and $F \in E^*$, we consider finite measure space $\mu(\Omega) < \infty$. Define measure $\nu$ on $\Sigma$ by
+    \begin{equation*}
+        \nu(A) = F(\1_A) = \int_A h \dr \mu,\ A \in \Sigma,
+    \end{equation*}
+    where $h \in \Ls_0(\mu)$ by the \hyperref[RRT]{Riesz Representation Theorem}, and we have
+    \begin{center}
+        $\mu(A) = 0$ \imply $\nu(A) = 0$ \imply $\nu \ll \mu$.
+    \end{center}
+    By \hyperref[R-N thm]{Radon-Nikodym Theorem}, we know
+    \begin{equation*}
+        \nu(A) = \int_A g d\mu
+    \end{equation*}
+    for some $g \in \Ls^1$ s.t. $g = \frac{d\nu}{d\mu}$. It suffices to show $g \in \Ls^{p'}$. Note that $p' > 1$, we have
+    \begin{equation*}
+        F(f) = \int_{\Omega} fg d\mu
+    \end{equation*}
+    for simple functions $f$. We can decompose $f = f^+ - f^-,\ g = g^+ - g^-$, find $(f_n^{\pm} \in \Ls^p)$ s.t. $f_n^{\pm} \uparrow f^{\pm}$, and apply MCT to four different cases, and thus we have
+    \begin{equation*}
+            F(f) = \int_{\Omega} fg d\mu
+    \end{equation*}
+    holds for all $f \in \Ls^p$. Can set $f = g^{p' - 1}$, and use 
+    \begin{equation}
+        \abs{F(f)} \leq \norm{F} \norm{f}_p\label{eq:4.3}
+    \end{equation}
+    where $\frac{1}{p} + \frac{1}{p'} = 1$ \imply $p' - 1 = \frac{p'}{p}$. And \hyperref[eq:4.3]{Equation 4.3} implies
+    \begin{equation*}
+        \int g^{p'} d\mu \leq \norm{F} (\int g^{p'} d\mu)^{\frac{1}{p}},
+    \end{equation*}
+    and thus
+    \begin{align*}
+        \norm{g}_{p'}^{p'} &\leq \norm{F} \norm{g}_{p'}^{\frac{p'}{p}}\\
+        &= \norm{F} \norm{g}_{p'}^{p' - 1}
+    \end{align*}
+    which concludes $\norm{g}_{p'} \leq \norm{F} < +\infty$. Complete the proof.
+\end{itemize}
+\end{proof}
+
+\begin{remark}\ \\
+$\Ls^1$ is a subset of the dual of $\Ls^\infty$, but not equal to it. Note if $F: \Ls^\infty (\mu) \to \C$ is a bounded linear functional, then if $\Omega = \mathrm{K} = \text{ compact Hausdorff space } F$ induces a bounded linear functional on $C(K) = \text{ space of continuous functions on } K$, we have $C(k) \subset \Ls^\infty (K, \Sigma, \mu)$, where $\Sigma = \Bs(K)$. \textcolor{red}{The counterexample is a little complex, check later}
+\end{remark}
+
+\begin{theorem}[Riesz Representation Theorem, v.2]\label{RRT2}\ \\
+Let $E = C(K)$ be the space of continuous functions on compact Hausdorff space $K$. Then,
+\begin{enumerate}[label = (\alph*)]
+    \item For every Borel regular signed measure on $K$, the functional $F(f) = \int_K f d\mu$ is a bounded linear functional on $K$.
+    \item Every bounded linear functional on $C(K)$ can be expressed in (a) for some measurable $\mu$, and $\norm{F} = \abs{\mu} (K)$, i.e. $\text{Tv}(K)$, where $\text{Tv}(\cdot)$ denotes the total variation. 
+\end{enumerate}
+\end{theorem}
+
+
+\vspace{12pt}
+\subsection{Hahn-Banach Theorem}
+\begin{theorem}[Hahn-Banach Theorem]\label{HB thm}\ \\
+Let $E_0$ be a subspace of a normed space, then every bounded linear functional $f_0: E_0 \to \R \text{ or } \C$ has an extension $f: E \to \R \text{ or } \C$ s.t. $\norm{f} = \norm{f_0}$.
+\end{theorem}
+\begin{proof}\ \\
+Assume $E$ is separable, otherwise we need "transfinite induction". 
+\begin{remark}
+Separability allows us to extend $f_0$ 1 dimension at a time.
+\end{remark}
+Let $\{x_n: n = 1,2,\dots\}$ have the property that its span is dense in $E$. We can do induction:
+\begin{equation*}
+    E_0 \to E_0 + \{x_1\} \to E_0 + \{x_1,x_2\} \to \dots \to E_0 + \vspan{x_1,\dots,x_n},\ \norm{f} = \norm{f_0}.
+\end{equation*}
+This final space is dense in $E$ and so can extend $f$. Thus it suffices to prove the extension by 1 dimension s.t. $E \to E_0 + \{x_1\}$.
+
+\np Note the extension is determined by a single number $\gamma = f(x_1)$. First we consider linear functional $f_0: E_0 \to \R$ and extend to $f: E_0 + \{x_1\} \to \R$ with $\norm{f} = \norm{f_0}$, which is equivalent to (WLOG, assuming $\norm{f} = \norm{f_0} = 1$)
+\begin{equation*}
+    \abs{f_0(x_0) + \lambda \gamma} \leq \norm{x_0 + \lambda x_1},\ \forall\ x_0 \in E_0,\ \lambda \in \R.
+\end{equation*}
+Divide inequality by $\lambda \neq 0$, it suffices to find $\gamma$ s.t.
+\begin{equation*}
+    \abs{f_0(x_0) + \gamma} \leq \norm{x_0 + x_1},\ \forall\ x_0 \in E_0.
+\end{equation*}
+Note we have $f_0$ is a real functional, it is equivalent to
+\begin{equation*}
+    - \norm{x_0 + x_1} \leq f_0(x_0) + \gamma \leq \norm{x_0 + x_1},\ \forall\ x_0 \in A.
+\end{equation*}
+Such a $\gamma$ exists provided
+\begin{equation*}
+    \norm{x_0 + x_1} - f_0(x_0) \geq - \norm{x_0'+ x_1} - f(x_0'),\ \forall\ x_0,x_0' \in E_0,
+\end{equation*}
+which is equivalent to (assuming $\norm{f_0} = 1$)
+\begin{align*}
+    f_0(x_0 - x_0') &\leq \norm{x_0 + x_1} + \norm{x_0' + x_1},\ \forall\ x_0,x_0' \in E_0\\
+    f_0(x_0 - x_0') &\leq \norm{x_0 + x_1} + \norm{-x_0' - x_1},\ \forall\ x_0,x_0' \in E_0
+\end{align*}
+which can be given by
+\begin{equation*}
+    f_0(x_0 - x_0') \leq \norm{x_0 - x_0'} \underbrace{\leq}_{\text{triangle inequality}} \norm{x_0 + x_1} + \norm{-x_1 - x_0'}
+\end{equation*}
+
+\np \underline{Extension to linear functionals over complexs}:\\
+Let $f: E \to \C$ be a linear functional over $\C$, set $g(x) = \Re{f(x)}$, then $g: E \to \R$ is a real linear functional, and $f(x) = g(x) - i g(ix),\ x \in E$. Note
+\begin{align*}
+    f(ix) &= i f(x)\\
+    g(ix) &= - \Im{f(x)}
+\end{align*}
+Conversely, if $g: E \to \R$ is a real linear functional on Banach space (not necessarily need Banach) $E$ over $\C$, then
+\begin{equation*}
+    f : E \to \C
+\end{equation*}
+defined by
+\begin{equation*}
+    f(x) = g(x) - i g(ix),\ x \in E
+\end{equation*}
+is a complex linear functional on $E$.
+
+\np To extend $f_0: E_0 \to \C$, we extend $g_0 = \Re{f_0}$ 2 real dimensions s.t.
+\begin{equation*}
+    E_0 \to E_0 + x_1 \to E_0 + x_1 + i x_1
+\end{equation*}
+and define $f(\cdot) = g(\cdot) - i g(i \cdot)$.
+
+\np To show $\norm{f} = \norm{f_0}$, we use that fact that for $x \in E_0 + \{\lambda x_1:\ \lambda \in \C\}$, we have
+\begin{equation*}
+    e^{i \theta} f(x) = f(x e^{i\theta}),\ \theta \in \R.
+\end{equation*}
+We can choose $\theta$ s.t. $f(x e^{i\theta}) = \Re{g(x e^{i \theta})}$. Now we already have
+\begin{equation*}
+    \abs{g(x e^{i \theta})} \leq \norm{f_0} \norm{x e^{i \theta}}
+\end{equation*}
+which implies 
+\begin{equation*}
+    \abs{f(x)} \leq \norm{f_0} \norm{x},\ \forall\ x \in E_0 + \{\lambda x_1:\ \lambda \in \C\}.
+\end{equation*}
+\end{proof}
+
+
+
+
+
+
+
+\vspace{12pt}
+\subsubsection{Implications of the Hahn-Banach Theorem}
+\begin{proposition}[Supporting Hyperplane Theorem]\label{SHT}\ \\
+Let $E$ be a normed space, for every $x \in E$, $\exists\ f \in E^*$ s.t. 
+\begin{equation*}
+    \norm{f} = 1,\ f(x) = \norm{x},
+\end{equation*}
+i.e. $\sup_{\norm{y}=1} \abs{f(y)}$ is attained at $y = x$. 
+\end{proposition}
+\begin{proof}\ \\
+Consider 1-dimensional space $E_0 = \vspan{x} = \{tx: t \in \R \text{ or } \C\}$. Define $f_0: E_0^* \to \R \text{ or } \C$ s.t.
+\begin{equation*}
+    f_0(tx) = t \norm{x}.
+\end{equation*}
+We have $\norm{f_0} = 1$, and by \hyperref[HB thm]{Hahn-Banach Theorem}, $\exists\ f \in E^*$ s.t. $\ f(x) = \norm{x},\ \norm{f} = 1$.
+\end{proof}
+\begin{remark}[Geometric Interpretation]\ \\
+Suppose $B = \text{ unit ball } \{x \in E: \norm{x} \leq 1\}$. Choose $x_0 \in \partial B,\ \norm{x_0} = 1$. $\exists\ f \in E^*$ s.t. $\norm{f} = 1,\ f(x) = \norm{x}$. Let 
+\begin{equation*}
+    H = \ker{f} + x_0,
+\end{equation*}
+where $\ker{f} = \{x: f(x) = 1\}$. $H$ intersects $E$ into two disjoint subsets, and $B$ lies entirely in one of them, i.e. for all $x \in B$ we have
+\begin{center}
+    $\norm{x} < 1$ \imply $\abs{f(x)} \leq \norm{f} < 1$ \imply f(x) < 1,
+\end{center}
+and we also have $E = \{x: f(x) < 1\} \kup H \kup \{x: f(x) < 1\}$.
+\end{remark}
+\begin{remark}\ \\
+Tangent hyperplane $H$ is not necessarily unique. We can extend this to prove the existence supporting hyperplane for more general convex sets.
+\end{remark}
+
+\vspace{12pt}
+\subsection{Second Duality}
+
+\begin{definition}\ \\
+    Let $E$ be a Banach space, the \underline{duality of $E$} is the space of all bounded linear functionals on $E$. We have for $f \in E^*,\ \norm{f} = \sup_{\norm{x} = 1} \abs{f(x)}$, and $E^*$ is a Banach space.  
+\end{definition}
+
+\np Let $E^*$ be the dual of $E$, and $E^{**}$ be the dual of $E^*$. $\exists$ natural embedding $E \to E^{**}$, $x \to x^{**} \in E^{**}$ s.t.
+\begin{equation*}
+    x^{**}(f) = f(x),\ f \in E^*.
+\end{equation*}
+We have
+\begin{equation*}
+    \norm{x^{**}} = \sup_{\norm{f} = 1,\ f \in E^*} \abs{x^{**} (f)} = \sup_{f \in E^*,\ \norm{f} = 1} \abs{f(x)} \leq \norm{x},
+\end{equation*}
+which implies
+\begin{equation*}
+    \norm{x^{**}} \leq \norm{x},\ x \in E.
+\end{equation*}
+By Hahn-Banach Theorem, we have $\norm{x^{**}} = \norm{x}$. Recall 
+\begin{equation*}
+    f_0: f_0(tx) = t \norm{x},\ t \in R \text{ or } \C,\ \norm{f_0} = 1.
+\end{equation*}
+Extend $f_0$ to a functional $f_x: E \to \R \text{ or } \C$ s.t. $\norm{f_x} = 1,\ f_x(x) = \norm{x}$ \imply $x^{**}(f_x) = \norm{x}$ \imply $\norm{x^{**}} \geq \norm{x}$.
+
+\np Conclude the embedding $E \to E^{**}$ is an isometry if the mapping is onto, say $E$ is a reference space.
+
+\begin{theorem}[Second Dual Space]\ \\
+Let $E$ be a normed space, then $E$ can be considered as a linear subspace of $X^{**}$. For this, a vector $x \in E$ is considered as a bounded linear functional on $E^*$ via the action:
+\begin{equation*}
+    x: f \to f(x),\ f \in E^*.
+\end{equation*}
+\end{theorem}
+
+
+\begin{examples}\ 
+\begin{enumerate}[label = (\alph*)]
+    \item Hilbert spaces.
+    \item $E = \Ls^p$ spaces for $1 < p < \infty$, we have
+    \begin{equation*}
+        E^* = \Ls^{p'},\ \frac{1}{p} + \frac{1}{p'} = 1,\ 1 < p' < \infty
+    \end{equation*}
+    and $E^{**} = \Ls^p$.
+\end{enumerate}
+\end{examples}
+
+
+\begin{definition}[Reflexivity]\ \\
+    A normed vector space $E$ is called \textit{reflexive} if $E^{**} = E$ under the natural embedding.
+\end{definition}
+
+\begin{proposition}\ \\
+If $E$ is a reflexive normed space, then every functional $f^* \in E^*$ attains its maximum on $E$.
+\end{proposition}
+\begin{proof}\ \\
+E is reflexive and $f \in E^*$, then $\exists\ x_f \in E^{**} = E$ with $\norm{x_f} = 1$ and $\norm{f} = f(x_f)$, i.e. $\sup_{\norm{x} = 1} \abs{f(x)}$ is achieved at $x = x_f$. This follows from \hyperref[SHT]{Supporting Hyperplane Theorem}.
+\end{proof}
+
+\np To show a normed space $E$ is not reflexive, it suffices to find $f \in E^*$ s.t. $\sup_{\norm{x} = 1} \abs{f(x)}$ is note attained. 
+
+\begin{example}\ \\
+Let $E = C([0,1]) = \text{ space of continuous functions } g: [0,1] \to \C$, and $\norm{g} = \sup_{0 \leq t\leq 1} \abs{g(t)}$. For $f \in E^*$, we define
+\begin{equation*}
+    f(g) = \int_0^1 h(x) g(x) dx,
+\end{equation*}
+where $h(x) = -1$ for $0  < x < \frac{1}{2}$, and $h(x) = 1$ for $\frac{1}{2} < x < 1$. Then
+\begin{equation*}
+    \norm{f} = 1 = \sup_{\norm{g} = 1} \abs{f(g)},
+\end{equation*}
+but sup is not attained.
+\end{example}
+
+\subsection{Separating Hyperplane Theorem}
+\begin{remark}
+Separating Hyperplane Theorem is an extension of \hyperref[SHT]{Supporting Hyperplane Theorem}, generalizing to arbitrary convex sets.
+\end{remark}
+
+\subsubsection{Sublinear Functionals}
+\begin{definition}\ \\
+    Let $E$ be a linear space, a function
+    \begin{equation*}
+        \norm{\cdot} : E \to [0, \infty)
+    \end{equation*}
+    is \textit{sublinear} if it satisfies
+    \begin{enumerate}[label = (\alph*)]
+        \item $\norm{\lambda x} = \lambda \norm{x},\ \lambda \in \R,\ \lambda > 0,\ x \in E$.
+        \item $\norm{x + y} \leq \norm{x} + \norm{y},\ x,y \in E$.
+    \end{enumerate}
+\end{definition}
+\begin{remark}\ \\
+Note the difference of the definition of sublinear functions and the norm. For a sublinear function $\norm{\cdot}$, it requires two additional properties to become a norm:
+\begin{itemize}
+    \item $\norm{-x} = \norm{x},\ \forall\ x\in E$.
+    \item $\norm{x} = 0 \Rightarrow x = 0$.
+\end{itemize}
+\end{remark}
+
+\vspace{6pt}
+\begin{theorem}[Extension of Hahn-Banach Theorem]\ \\
+Let $E_0$ be a subspace of a linear vector space over $\R$, and $\norm{\cdot}$ be a sublinear functional on $E$ and $f_0: E_0 \to \R$ a linear functional on $E_0$ satisfying
+\begin{equation*}
+    f_0(x) \leq \norm{x},\ x \in E_0.
+\end{equation*}
+Then $f_0$ admits an extension $f$ on $E$ s.t.
+\begin{equation*}
+    f(x) \leq \norm{x},\ x \in E.
+\end{equation*}
+\end{theorem}
+\begin{proof}\ \\
+Same argument as in the proof of \hyperref[HB thm]{Hahn Banache Theorem}.
+\end{proof}
+\begin{remark}\ \\
+There is no guarantee that if $E$ is a Banach space, then $f(\cdot)$ is a bounded linear functional.
+\end{remark}
+
+\subsubsection{Geometric Properties of Sublinear Functionals}
+\begin{definition}\ \\
+    A subset $K$ of a linear vector space $E$ is \textit{absorbing} if
+    \begin{equation*}
+        E = \bigcup_{t \geq 0} t K,
+    \end{equation*}
+    where $tK = \{tk: k \in K\}$.
+\end{definition}
+
+\begin{proposition}[Minkowski Functional]\ \\
+Let $K \subset E$ be an absorbing convex subset of a linear vector space $E$ s.t. $0 \in K$. Then the \textit{Minkowski functional}
+\begin{equation*}
+    \norm{x}_K = \inf\{t > 0: x \in tK\}
+\end{equation*}
+is a sublinear functional on $E$. Conversely, let $\norm{\cdot}$ be a sublinear functional on $E$. Then the \textit{sub-level} set
+\begin{equation*}
+    K = \{x \in E:\ \norm{x} \leq 1\}
+\end{equation*}
+is an absorbing convex set and $0 \in K$.
+\end{proposition}
+\begin{proof}\ \\
+\begin{itemize}
+    \item $\Rightarrow:$\\
+    Let $K$ be an absorbing convex set with $0 \in K$, the main observation is that since $0 \in K$, and $K$ is convex, we have
+    \begin{equation*}
+        x \in K \Rightarrow tx \in K,\ 0 \leq t < 1.
+    \end{equation*}
+    WTS $\norm{\lambda x} = \lambda \norm{x},\ x \in E,\ \lambda > 0$. Note
+    \begin{align*}
+        \norm{\lambda x} &= \inf\{t > 0:\ \lambda x \in tK\}\\
+        &= \inf\{t > 0:\ x \in \frac{t}{\lambda} K\}\\
+        &= \lambda \inf\{s > 0:\ x \in sK\}\\
+        &= \lambda \norm{x}.
+    \end{align*}
+    It remains to prove the triangle inequality. For $x\in tK,\ y \in sK$, we have 
+    \begin{equation*}
+        x = tk_1,\ y = sk_2,\ k_1,k_2 \in K,
+    \end{equation*}
+which implies
+\begin{align*}
+    x + y &= (t + s) [\frac{t}{t+s} k_1 + \frac{s}{t+s} k_2]\\
+    &= (t+s) k
+\end{align*}
+for some $k \in K$, since $K$ is convex. Therefore, we have
+\begin{equation*}
+    x + y \in (t+s)K \Rightarrow \norm{x + y} \leq \norm{x} + \norm{y},
+\end{equation*}
+since $\{t: x \in tK\}$ is an interval $(\alpha(x), \infty)$.
+\item $\Leftarrow:$\\
+$0 \in K$ since $\norm{0} = 0$, and the convexity comes from triangle inequality.\\
+\begin{remark}
+If $K \neq -K$, then $\exists\ x \in E$ with $\norm{x} \neq \norm{-x}$ if $K = E$, then $\norm{\cdot} = 0$.
+\end{remark}
+\end{itemize}
+\end{proof}
+
+
+\subsubsection{Seperating Hyperplane}
+
+\begin{theorem}[Separation of a Point from a Convex Set]\ \\
+Let $K$ be an open convex subset of a normed space $E$ and $x_0 \neq K$. Then exists a continuous linear functional
+\begin{equation*}
+    f: E \to \R,\ f \not\equiv 0,
+\end{equation*}
+and $f(x) < f(x_0),\ x \in K$.
+\end{theorem}
+\begin{proof}\ \\
+By translation can assume WLOG $0 \in K$. Since $K$ is open, it is absorbing. Let $\norm{\cdot}_K$ be Minkowski functional, then
+\begin{equation*}
+    \norm{x}_K \leq \frac{1}{r} \norm{x},\ x \in E
+\end{equation*}
+if $B(0,r) \subset K$. Proceed as in separation theorem for a unit ball. Define $f_0$ on $\vspan{x_0}$ by
+\begin{equation*}
+    f(tx_0) = t\norm{x_0},\ t \in \R,
+\end{equation*}
+then if $E_0 = \{\lambda x_0:\ \lambda \in \R\}$, we have
+\begin{equation*}
+    f_0(x) \leq \norm{x}_K,\ x \in E_0,
+\end{equation*}
+since \begin{equation*}
+    \norm{tx}_K = t \norm{x}_K,\ t \geq 0.
+\end{equation*}
+\hyperref[HB thm]{Hahn Banach Theorem} implies that we can extend $f_0$ to $f: E \to \R$ s.t.
+\begin{equation*}
+    f(x) \leq \norm{x}_K \leq \frac{1}{r} \norm{x},\ x \in E,
+\end{equation*}
+and thus $f$ is a bounded linear functional.\\
+For separation, we have
+\begin{equation*}
+    f(x) \leq \norm{x}_K \leq 1 \leq \norm{x_0}_K = f_0(x_0) = f(x_0),\ x \in K,
+\end{equation*}
+which implies $f(x) \leq f(x_0),\ x \in K$, and since $K$ is open,
+\begin{equation*}
+    x + tv \in K
+\end{equation*}
+for some $t > 0$, $\forall\ v$ s.t. $\norm{v} = 1$. Hence,
+\begin{equation*}
+    f(x + tv) \leq f(x_0),\ t = t_x > 0,\ \norm{x} = 1,
+\end{equation*}
+and thus 
+\begin{equation*}
+    f(x) + t \sup_{\norm{v} = 1} f(v) \leq f(x_0).
+\end{equation*}
+Note that $\sup_{\norm{v} = 1} f(v) > 0$, we have
+\begin{equation*}
+    f(x) < f(x_0).
+\end{equation*}
+\end{proof}
+
+
+
+\begin{theorem}[Separation of Convex Sets]\label{SepConvSets}\ \\
+Let $A,B$ be disjoint convex subsets of a normed space $E$,
+\begin{enumerate}[label = (\alph*)]
+    \item If $A$ is open, then $\exists$ a bounded linear functional
+    \begin{equation*}
+        f: E \to \R
+    \end{equation*}
+    s.t. $f(a) < f(b),\ \forall\ a \in A,\ b \in B$.
+    \item If $A$ is closed and $B$ is compact, then
+    \begin{equation*}
+        \sup_{a \in A} f(a) < \inf_{b \in B} f(b)
+    \end{equation*}
+\end{enumerate}
+\end{theorem}
+\begin{proof}\
+\begin{enumerate}[label = (\alph*)]
+    \item Let 
+    \begin{equation*}
+        K = A -B = \{a - b:\ a \in A,\ b \in B\},
+    \end{equation*}
+    then $K$ is open, convex and $0 \in K$. By the previous theorem, $\exists\ f \in E$ s.t.
+    \begin{equation*}
+        f(a - b) < f(0) = 0,\ \forall\ a \in A,\ b \in B.
+    \end{equation*}
+    Therefore,
+    \begin{equation*}
+        f(a) < f(b),\ a \in A,\ b \in B.
+    \end{equation*}
+    \item Suppose $A$ closed and $B$ compact, we have
+    \begin{equation*}
+        d(A,B) := \inf\{\norm{x - y}:\ x \in A,\ y \in B\} = \delta > 0.
+    \end{equation*}
+    Define $A_\delta = \{x \in E:\ d(x,A) < \delta\}$, we have $A_\delta$ is open, and take
+    \begin{equation*}
+        \ep = \frac{\delta}{2},
+    \end{equation*}
+    we have $A_\ep \cap B = 0$. By part (a), we have $\exists\ f \in E^*$ s.t.
+    \begin{equation*}
+        f(x) < f(y),\ \forall\ x \in A,\ y \in B.
+    \end{equation*}
+    For $a \in A$, we have $a + \frac{\delta}{2} v \in A_\delta$ if $\norm{v} = 1$. Thus
+    \begin{equation*}
+        f(a + \frac{\delta}{2} v) = f(a) + \frac{\delta}{2} f(v) < f(b),\ b \in B.
+    \end{equation*}
+    Take sup over $\norm{v} = 1$, we have
+    \begin{equation*}
+        \sup_{\norm{v} = 1} \abs{f(v)} = \ep > 0,
+    \end{equation*}
+    which implies 
+    \begin{equation*}
+        f(a) < f(b) - \ep,\ a \in A,\ b \in B,
+    \end{equation*}
+    which further implies
+    \begin{equation*}
+        \sup_{a \in A} f(a) < \inf_{ b \in B} f(b).
+    \end{equation*}
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}\ \\
+Let $K \subset E$ be a closed convex set, then $K$ is the intersection of all half spaces containing $K$, where half space $H = \{x \in E:\ f(x) \leq \lambda,\ f \in E^*\}$.
+\end{corollary}
+\begin{proof}\ \\
+If $x \notin K$, then $\exists\ f \in E^*$ s.t.
+\begin{equation*}
+    \sup_{k \in K} f(k) < f(x_0).
+\end{equation*}
+Can choose $\lambda$ s.t. $\sup_{k \in K} f(k) \leq \lambda \leq f(x_0)$.
+\end{proof}
+
+\vspace{12pt}
+\subsection{Bounded Linear Operators}
+
+\begin{definition}\ \\
+    $X,Y$ Banach spaces, we say $T: X \to Y$ is a \textit{linear operator} if 
+    \begin{equation*}
+        T(ax + by) = a Tx + b Ty,\ a,b \in \R \text{ or }\C,\ x,y \in X.
+    \end{equation*}
+    The operator $T$ is said to be \textit{bounded} if
+    \begin{equation*}
+        \norm{T} := \sup_{\norm{x} = 1} \norm{Tx} < \infty,
+    \end{equation*}
+    then $T$ is \textit{Lipschitz}:
+    \begin{equation*}
+        \norm{Tx - Ty} \leq \norm{T} \norm{x - y},\ x,y \in X.
+    \end{equation*}
+\end{definition}
+
+\begin{remark}\ \\
+The operator norm is a norm on bounded linear operators.
+\end{remark}
+
+\vspace{6pt}
+\begin{proposition}\ \\
+Let $\Ls(X,Y) = \text{ space of bounded linear operators } T: X \to Y$, then $\Ls(X,Y)$ is a \textit{Banach space} with the norm $T \to \norm{T}$, i.e.
+\begin{enumerate}
+    \item $\norm{T} = 0 \Leftrightarrow T = 0$.
+    \item $\norm{\lambda T } = \abs{\lambda} \norm{T},\ \lambda \in \R \text{ or } \C,\ T \in \Ls(X,Y)$.
+    \item $\norm{T + S} \leq \norm{T} + \norm{S}$, $T,S \in \Ls(X,Y)$.
+    \item In addition operator norm satisfies
+    \begin{equation*}
+        \norm{TS} \leq \norm{T} \norm{S},\ T,S \in \Ls(X,Y).
+    \end{equation*}
+\end{enumerate}
+\end{proposition}
+
+\vspace{6pt}
+\begin{definition}[Adjoint operator]\ \\
+Suppose $T \in \Ls(X,Y)$, then the adjoint operator $T^*$ of $T$ is defined as (for $f \in Y^*$)
+\begin{equation*}
+    T^* f : X \to \R \text{ or } \C,\ T^*f(x) = f(Tx),
+\end{equation*}
+and we further have
+\begin{itemize}
+    \item $\abs{T^* f(x)} = \abs{f(Tx)} \leq \norm{f} \norm{Tx} \leq \norm{f} \norm{T} \norm{x}$
+    \item $T^* f$ is a linear functional.
+    \item $\norm{T^* f} = \sup_{\norm{x} = 1} \norm{f}\norm{T}\norm{x} = \norm{f} \norm{T}$.
+\end{itemize}
+Hence $T^* f \in X^*$, and 
+\begin{equation*}
+    \norm{T^* f} \leq \norm{T}\norm{f},
+\end{equation*}
+and thus $T^*: Y^* \to X^*$ is a linear operator and bounded with $\norm{T^*} \leq \norm{T}$.
+\end{definition}
+
+
+
+\begin{proposition}\ \\
+For every $T \in \Ls(X,Y)$, the adjoint $T^*$ is in $\Ls(Y^*, X^*)$ and $\norm{T^*} = \norm{T}.$
+\end{proposition}
+\begin{proof}\ 
+\begin{align*}
+    \norm{T^*} &= \sup_{\norm{f}_{Y^*} = 1} \norm{T^* f}_{X^*}\\ 
+    &= \sup_{\norm{f}_{Y^*} = 1} \sup_{\norm{x}_X = 1} \abs{T^* f(x)}\\
+    &= \sup_{\norm{f}_{Y^*} = 1} \sup_{\norm{x}_X = 1} \abs{f(Tx)}\\
+    &=  \sup_{\norm{x}_X = 1} \sup_{\norm{f}_{Y^*} = 1}\abs{f(Tx)}.
+\end{align*}
+From \hyperref[HB thm]{Hahn Banach Theorem}, 
+\begin{equation*}
+    \sup_{\norm{f}_{Y^*} = 1} \abs{f(Tx)} = \norm{Tx},
+\end{equation*}
+conclude that
+\begin{equation*}
+    \norm{T^*} = \sup_{{x}_X = 1} \norm{Tx} = \norm{T}.
+\end{equation*}
+\end{proof}
+
+
+\begin{proposition}[Properties of Adjoint Operators]\ \\
+For $T,S \in \Ls(X,Y)$, we have $T^*,S^* \in \Ls(Y^*, X^*)$, then
+\begin{enumerate}[label = (\arabic*)]
+    \item $(aT + bS)^* = aT^* + b S^*,\ a,b \in \R \& \C.$
+    \item $(a T)^* f(x) = f(a Tx) = af(Tx) = aT^* f(x)$.
+    \item $(ST)^* = T^* S^*$.
+\end{enumerate}
+\end{proposition}
+\begin{remark}\ \\
+From (2), if $T \in \Ls(X,X)$ is invertible, then $T^* \in \Ls(X^*,X^*)$ is invertible and $(T^*)^{-1} = (T^{-1})^*$.
+\end{remark}
+
+\begin{remark}\ \\
+Just as Hilbert space, we have the notion of orthogonality.
+\end{remark}
+
+\begin{definition}\ \\
+Let $A \subset X$ be a Banach space, the orthogonal complement $A^\perp$ of $A$ is a subset of $X^*$ s.t.
+\begin{equation*}
+    A^\perp = \{f \in X^*:\ f(x) = 0,\ \forall\ x \in A\}.
+\end{equation*}
+$A^\perp$ is a closed linear subspace of $X^*$.
+\end{definition}
+
+
+
+\begin{proposition}\ \\
+Let $T \in \Ls(X,Y)$, $T^* \in \Ls(Y^*, X^*)$, where $X,Y$ are Banach spaces, then
+\begin{center}
+    $(\Im{T})^\perp \subset Y^*$ and $\ker{T^*} \subset Y^*$
+\end{center}
+satisfy $(\Im{T})^* = \ker{T^*}$.
+\end{proposition}
+\begin{proof}\ \\
+$f \in \Im{T}^\perp \Leftrightarrow f(Tx) = 0,\ \forall\ x \in X$, which implies $T^* f = 0$ and thus $f \in \ker{T^*}$.
+\end{proof}
+
+\np \textbf{Specialize to Hilbert space}:\\
+Suppose $\Hs = \text{ Hilbert space }$, then by \hyperref[RRT]{Riesz Representation Theorem}
+\begin{equation*}
+    \Hs^* = \Hs,
+\end{equation*}
+i.e. $f \in \Hs^* \Leftrightarrow\ \exists\ y \in \Hs,\ f(x) = \inprod{x}{y},\ x \in \Hs$.\\
+Let $T \in \Ls(\Hs,\Hs),\ T^* \in \Ls(\Hs^*,\Hs^*)$, we have
+\begin{equation*}
+    T^*f(x) = f(Tx) = \inprod{Tx}{y},\ x \in \Hs,\ f \in \Hs^*.
+\end{equation*}
+Write $T^* f(x) = \inprod{x}{T^*y}$, this defines $T^*y$ and $T^*: \Hs \to \Hs$.\\
+Hence $\inprod{Tx}{y} = \inprod{x}{T^* y},\ x,y \in \Hs$. Clearly, $R^*$ is a bounded linear operator on $\Hs$, i.e, $T^* \in \Ls(\Hs, \Hs)$, and we have $\norm{T^*} = \norm{T}$, since
+\begin{equation*}
+    \norm{T^*} = \sup_{\norm{y} = 1} \norm{T^* y} = \sup_{\norm{y} = 1,\ \norm{x} = 1} \inprod{x}{T^* y} = \sup_{\norm{y} = 1,\ \norm{x} = 1} \inprod{Tx}{y} = \norm{T}.
+\end{equation*}
+Therefore, $T^* \in \Ls(\Hs^*,\Hs^*) \Rightarrow T^* \in \Ls(\Hs, \Hs)$ via Riesz.\\
+Note that if $T^* \in \Ls(\Hs,\Hs)$, we have
+\begin{equation*}
+    (aT)^* = \bar{a} T^*,\ a \in \C,\ \bar{a} = \text{ complex conjugate }.
+\end{equation*}
+
+\np Note that $T \in \Ls(X,Y) \Rightarrow T^* \in \Ls(Y^*, X^*)$, and $\Im{T}^\perp = \ker{T^*}$. For Hilbert space this implies
+\begin{equation*}
+    \bar{\Im{T}} \bigoplus \ker(T^*) = \Hs,
+\end{equation*}
+i.e. orthogonal decomposition. Since $\ker{T^*} = (\Im{T})^\perp$, we use fact that if $E \in \Hs$, $E$ be a subspace,
+\begin{equation*}
+    (E^\perp)^\perp = \bar{E} = \text{ closure of } E.
+\end{equation*}
+Apply this to prove the \underline{Von-Newton weak ergodic theorem}.
+
+
+\np \textbf{Setup:} probability space $(\Omega,\ \Fs,\ \mathbb{P})$, $\mathbb{P} = 1$.\\
+Let $T: \Omega \to \Omega$ be a measurable map, we say $T$ is \textit{measure preserving} if
+\begin{equation*}
+    \P(T^{-1} A) = \P(A),\ A \in \Fs.
+\end{equation*}
+where $T^{-1}A = \{\omega \in \Omega:\ T \omega \in A\}$. 
+
+\begin{example}\ \\
+$\Omega = [0,1]$ Lebesgue measure $\P$, $\Fs = \text{ Borel } \sigma-\text{algebra}$. For $\lambda \in \R$, let
+\begin{equation*}
+    T \omega = \omega + (\lambda \text{ mod } 1).
+\end{equation*}
+This is equivalent to rotation on the unit sphere through an angle $2\pi \lambda$. $T$ is measure preserving and one-to-one correspondence. $T^{-1}$ exists.
+\end{example}
+
+\begin{example}\ \\
+$\Omega = [0,1]$, $\P = \text{ Lebesgue measure },\ \Fs = \text{ Borel sets }$. Let
+\begin{equation*}
+    T \omega = 2 \omega \text{ mod } 1.
+\end{equation*}
+$T$ is the shift operator on the binary representation, i.e. $\omega = \summ{j=1}\infty \frac{a_j}{2^j},\ a_j = 0 \text{ or } 1$. Therefore,
+\begin{equation*}
+    T \omega = \summ{j = 1}\infty \frac{a_{j + 1}}{2^j}.
+\end{equation*}
+Let
+\begin{equation*}
+    I_{n,k} = [\frac{k - 1}{2^n}, \frac{k}{2^n}],\ 1 \leq k < 2^n,
+\end{equation*}
+which is the Dyadic interval. We have
+\begin{equation*}
+    T^{-1} I_{n,k} = I_{n+1,k} \cup I_{n+1, k+ 2^n}.
+\end{equation*}
+We have $\P(T^{-1} I_{n,k}) = \P(I_{n,k})$ for all Dyadic interval, which implies
+\begin{equation*}
+    \P(T^{-1} 0) = P(0),\ \forall\ 0 \in \Fs.
+\end{equation*}
+Hence $T$ is measure preserving but $T$ is \underline{not} one-to-one correspondence. In fact, $T$ is a $2 \to 1$ mapping. Action of $T$ is
+\begin{align*}
+    [0,\frac{1}{2}] &\overset{T}{\to} [0,1],\\
+    [\frac{1}{2},1] &\overset{T}{\to} [0,1].
+\end{align*}
+$T$ doubles the length of a dyadic interval, and it is measure preserving since it is $2 \to 1$. $T$ is an expanding map, such mappings are called \textit{hyperbolic}.
+\end{example}
+
+\vspace{12pt}
+\subsubsection{Von Newmann Ergodic Theorem}
+
+\np Suppose $T: \Omega \to \Omega$ is measure-preserving, we can associate operator $U$ on $\Ls^2(\Omega)$ by $U f(\omega) = f(T \omega),\ \omega \in \Omega$. Then we have
+\begin{equation*}
+    \int_\Omega f(T \omega) \dr \mu(\omega) = \int_\Omega f(\omega) \dr \mu(\omega),\ \forall\ f \in \Ls^1(\Omega)
+\end{equation*}
+It is true if $f = \1_A$ and then extend to $\Ls^1(\Omega)$.\\
+Suppose $\vphi \in \Ls^2(\Omega)$, we have $U \vphi(\omega) = \vphi (T \omega)$. Also,
+\begin{align*}
+    \inprod{U \vphi}{U \psi} &= \int_\Omega \vphi(T \omega) \psi(T \omega) \dr \mu(\omega)\\
+    &= \int_\Omega \vphi(\omega) \psi(\omega) \dr \mu(\omega)\\
+    &= \inprod{\vphi}{\psi}.
+\end{align*}
+Conclude that
+\begin{equation*}
+    \inprod{U \vphi}{U \psi} = \inprod{\vphi}{\psi},\ \vphi,\psi \in \Ls^2(\Omega).
+\end{equation*}
+$U$ is a bounded linear operator on $\Hs = \Ls^2(\Omega)$ with $\norm{U} = 1,\ \norm{U\vphi} = \norm{\vphi},\ \vphi \in \Hs$.\\
+In addition,
+\begin{equation*}
+    \inprod{U \vphi}{U \psi} = \inprod{\vphi}{\psi} \Rightarrow \inprod{U^* U \vphi}{\psi} = \inprod{\vphi}{\psi},\ \vphi,\psi \in \Hs,
+\end{equation*}
+which implies $U^*U = I$. Therefore, $U$ is one-to-one but not necessarily onto.
+
+\np If $U$ is onto then $UU^* = U^* U = I$ $\Rightarrow$ $U$ is a unitary operator on $\Hs$, hence $U$ is invertible. $U$ is invertible if and only if $T$ is one-to-one. Then $U^* \vphi(\omega) = \vphi(T^{-1} \omega),\ \omega \in \Omega$.
+\begin{remark}\ \\
+$T$ (1-1) implies $T$ almost onto. To see this let $A$ be a set s.t. $T(\Omega) \subset A$, and hence $T^{-1} A = \Omega,\ \P(T^{-1}A) = \P(\Omega) = \Delta$ $\Rightarrow$ $\P(A) = 1$ $\Rightarrow$ $\P(\Omega \setminus A) = 0$. 
+\end{remark}
+
+\np In the case $T$ is not invertible (e.g. 2-1 mapping), might expect similar formula for $U^*$. In the shift operator case, $T_1:[0,\frac{1}{2}] \to [0,1],\ T_2: [\frac{1}{2},1] \to [0,1]$, and $T_1, T_2$ are invertible, we have
+\begin{equation*}
+    U^* \vphi(\omega) = \frac{1}{2}[\vphi(T_1^{-1} \omega) + \vphi(T_2^{-1} \omega)].
+\end{equation*}
+
+\vspace{3pt}
+\begin{definition}\ \\
+A measure preserving mapping $T: \Omega \to \Omega$ is \textit{ergodic} if and only if the only eigen function $\vphi \in \Ls^2(\Omega)$ of the corresponding operator $U$ is the constant function, i.e.
+\begin{equation*}
+    U \vphi = \vphi \Rightarrow \vphi \equiv \text{constant}.
+\end{equation*}
+\end{definition}
+
+\vspace{3pt}
+\begin{lemma}\ \\
+A measure preserving mapping $T: \Omega \to \Omega$ is \textit{ergodic} if and only if invariant sets of $T$ have probability $0$ or $1$, i.e. if $A \in \Fs$ satisfies 
+\begin{equation*}
+    \P[(A - T^{-1} A) \cup (T^{-1} A - A)] = 0, 
+\end{equation*}
+then $\P(A) = 0$ or $\P(A) = 1$.
+\end{lemma}
+\begin{proof}\ \\
+Assume $T$ is not ergodic, then $\exists\ \vphi \in \Ls^2(\Omega),\ U \vphi = \vphi$. Hence can find $a,b \in \R,\ a < b$ s.t. 
+\begin{equation*}
+    A = \{\omega \in \Omega:\ a < \vphi(\omega) < b\}
+\end{equation*}
+has $0 < \P(A) < 1$. However,
+\begin{align*}
+    T^{-1}A &= \{\omega:\ T \omega \in A\}\\
+    &= \{\omega:\ a < \vphi(T \omega) < b\}\\
+    &= \{\omega:\ a < \vphi(\omega) < b\} = A,
+\end{align*}
+and thus $A$ is invariant.
+
+\np Conversely suppose $A \in \Fs$, we have $A = T^{-1}A$ up to measure-zero sets and $0 < \P(A) < 1$, then $\vphi = \1_A$ satisfies $U \vphi = \vphi,\ \vphi \in \Ls^2(\Omega),\ \vphi \not\equiv \text{constant}$.
+\end{proof}
+
+
+\vspace{6pt}
+\begin{theorem}[Von Newmann Ergodic Theorem, v.1] \label{VN ergodic}\ \\
+Suppose $T: \Omega \to \Omega$ is measure preserving, then for any $\vphi \in \Ls^2(\Omega)$, one has 
+\begin{equation*}
+    \lim_{N \to \infty} \frac{1}{N} \summ{n=0}{N-1} \vphi(T^n \cdot) = \int_\Omega \vphi(\omega) \dr \P(\omega).
+\end{equation*}
+\end{theorem}
+\begin{remark}\ \\
+Convergence is in the $\Ls^2(\Omega)$ sense, i.e. mean square.
+\end{remark}
+
+\begin{proposition}[Von Newmann, v.2]\ \\
+$T: \Omega \to \Omega$ measure preserving, $\vphi \in \Ls^2(\Omega),\ \E[\vphi] = 0$, then
+\begin{equation*}
+    \frac{1}{N} \summ{n = 0}{N - 1} \vphi(T^n \cdot) \to 0
+\end{equation*}
+in $\Ls^2(\Omega)$ as $N \to \infty$. 
+\end{proposition}
+\begin{proof}\ \\
+Note it suffices to assume $\E[\vphi] = 0$. WTS 
+\begin{equation*}
+    \lim_{N \to \infty} \frac{1}{N} [I + U + U^2 + \dots + U^{N-1}] \vphi(\cdot) = 0
+\end{equation*}
+in $\Ls^2(\Omega)$. If $\vphi$ is orthogonal to the constant constant function. Since $\E[\vphi] = 0$, then $\inprod{\vphi}{1} = 0$. Define a "derivative" operator on $\Ls^2(\Omega)$ s.t.
+\begin{equation*}
+    D \vphi = (U - I) \vphi = \vphi(T \cdot) - \vphi(\cdot).
+\end{equation*}
+Use Fundamental Theorem of Calculus argument,
+\begin{equation*}
+    [I + U + U^2 + \dots + U^{N-1}] D\vphi = (U^N - I) \vphi.
+\end{equation*}
+Hence,
+\begin{equation*}
+    \norm{\frac{I + U + U^2 + \dots + U^{N-1}}{N} \vphi} \leq \frac{2 \norm{\psi}}{N}
+\end{equation*}
+if $\vphi = D \psi$. In that case $\lim$ as $N \to \infty$ is zero, i.e. if $\vphi \in \Im{D} \subset \Hs = \Ls^2(\Omega)$, then finished. Note also that
+\begin{equation*}
+    \norm{\frac{I + U + U^2 + \dots + U^{N-1}}{N}} \leq 1
+\end{equation*}
+since $\norm{U} = 1$. Hence converge to zero if $\vphi \in \bar{\Im{D}} = \text{ closure of } \Im{D}$. 
+\begin{equation*}
+    \vphi \in \bar{\Im{D}} \Rightarrow \exists\ \vphi_\ep \in \Im{D},\ \norm{\vphi_\ep - \vphi} < \ep,
+\end{equation*}
+which implies $\norm{\frac{I + U + \dots + U^{N-1}}{N} (\vphi_\ep - \vphi)} < \ep$.
+
+\np Recall $\bar{\Im{D}} \bigoplus \ker{D^*} = \Hs = \Ls^2(\Omega)$. It suffices to show $\ker{D^*}$ is spanned by constant functions. 
+
+\np Note $T$ ergodic implies $\ker{D}$ is spanned by constants, we have $D \vphi = 0 \Leftrightarrow U\vphi = \vphi$, and
+\begin{equation*}
+    (D^* \vphi = 0 \Leftrightarrow U^* \vphi = 0) \Rightarrow (\inprod{\vphi, U^* \vphi}{\vphi} = \inprod{\vphi}{\vphi}). 
+\end{equation*}
+Therefore,
+\begin{align*}
+    \inprod{U \vphi}{\vphi} &= \inprod{\vphi}{\vphi}\\
+    \int \vphi(T \omega) \vphi(\omega) \dr \P(\omega) &=\int \vphi(\omega)^2 \dr \omega\\
+    &= \int \vphi(T \omega)^2 \dr \omega,
+\end{align*}
+which implies
+\begin{equation*}
+    \frac{1}{2} \int [\vphi(T \omega)^2 + \vphi(\omega)^2] \dr \P(\omega) - \int \vphi(T \omega) \vphi(\omega) \dr \P(\omega) = 0.
+\end{equation*}
+i.e. $\frac{1}{2} \int[\vphi(T \omega) - \vphi(\omega)]^2 \dr \P(\omega) = 0$, which means
+\begin{equation*}
+    \vphi(T \omega) = \vphi(\omega),\ \omega \in \Omega.
+\end{equation*}
+i.e. $\vphi \equiv \text{constant}$ by ergodicity.
+\end{proof}
+
+\vspace{12pt}
+\subsection{Open Mapping Theorem}
+
+\np Suppose $T: X \to Y$ bounded linear operator on Banach spaces, and $T$ is injective and surjective, i.e. $T^{-1}: Y \to X$ exists. \underline{Open Mapping Theorem} implies $T^{-1}$ is a bounded operator. The main input into argument is \underline{Baire Category Theorem}. 
+
+\begin{definition}\ \\
+A set $S$ in a metric space $M$ is \underline{nowhere dense} (e.g. Cantor set) if its closure $\bar{S}$ has empty interior. 
+\end{definition}
+
+
+
+
+
+
+
+
+
