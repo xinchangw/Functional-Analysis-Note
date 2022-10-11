@@ -20,10 +20,12 @@ $\R^n (\C^n)$ is an $n$-dimensional real (complex) vector space.
 
 \np In this course we mainly concentrate on $\infty$-dimensional vector space.
 
-\begin{example}
+\begin{example}\ \\
 $K$ is a compact Hausdorff space, $E = \{f: K \to \R: f(\cdot) \text{ is continuous }\}$ is an $\infty$ dim real vector space.
 \end{example}
 
+
+\vspace{6pt}
 \subsection{Quotient Space}
 \noindent Vector space can have many subspaces. Let $E = $ Vector Space, $E_1 \subset E$ a \underline{proper subspace} (i.e. $E_1 \neq E$).
 
@@ -35,30 +37,34 @@ The \textit{Quotient Space} $E / E_1$ is the set of \underline{equivalent classe
 $E/E_1$ is a linear vector space. $x_1,x_2 \in E$ $\Rightarrow$ $[x_1] + [x_2] = [x_1 + x_2]$, $\lambda [x] = [\lambda x]$ for $x \in \E, \lambda \in \F$. i.e. $v,w \in E/E_1$, $\lambda,\mu \in \F$, then $\lambda v + \mu w \in E/E_1$. If $E/E_1$ has finite dimension, then the dimension of $E/E_1$ is called the \underline{codimension} of $E_1$ in $E$. If $E$ is finite dimension, then $\text{codim}(E_1) + \text{dim}(E_1) = \text{dim}(E)$.
 \end{remark}
 
+\vspace{3pt}
 \begin{definition}[Linear operator]\ \\
 A map $T: E \to F$ between two linear spaces is a \underline{linear operator} if it preserves the properties of addition and scalar multiplication (i.e. $T(\lambda v + \mu w) = \lambda T(v) + \mu T(w)$, $v,w \in E, \lambda,\mu \in \F$).
 \end{definition}
-\noindent The \underline{Kernal} \& \underline{image} of $T$ are the subspaces
+\noindent The \underline{Kernal} \& \underline{Image} of $T$ are the subspaces
 \begin{itemize}
-    \item $Ker(T) = \{x \in E: Tx = 0\}$
-    \item $Im(T) = \{Tx \in F: x \in E\}$
+    \item $\ker(T) = \{x \in E: Tx = 0\}$
+    \item $\Im(T) = \{Tx \in F: x \in E\}$
 \end{itemize}
-$Ker(T) \subset E,\ Im(T) \subset F$ are subspaces.
+$\ker(T) \subset E,\ \Im(T) \subset F$ are subspaces.
 
-\begin{example}
+\begin{example}\ \\
 $E = \{f: K \to \R: f(\cdot) \text{ continuous}\}$, $E_1 = \{f(\cdot) \in E: f(k_1) = 0\}$, where $k_1 \in F$ is fixed. Then $E/E_1 = \text{ constant functions }$, $\text{dim}(E/E_1) = 1$.
 \end{example}
 
+\clearpage
 \subsection{Normed Spaces}
 \begin{definition}\ \\
-Let $E$ be a linear vector space, a norm $\norm{\cdot}$ on $E$ is a function $x \to \norm{x},\ x \in E$ from $E$ to $\R$ with the properties:
+Let $E$ be a linear vector space, a norm $\norm{\cdot}: E \to \R,\ x \to \norm{x}$ satisfies the following properties:
 \begin{itemize}
     \item $\norm{x} \geq 0,\ x \in E$ and $\norm{x} = 0 \Rightarrow x = 0$.
     \item $\norm{\lambda x} = \abs{\lambda} \norm{x},\ x \in E, \lambda \in \F$.
     \item $\norm{x + y} \leq \norm{x} + \norm{y}, x,y \in E$ (triangle inequality) 
 \end{itemize}
 \end{definition}
-\np A linear space $E$ equipped with a norm $\norm{\cdot}$ is called a normed space. This makes $E$ a metric space with metric $d(x,y) = \norm{x -y}, x,y \in E$.
+\np A linear space $E$ equipped with a norm $\norm{\cdot}$ is called a normed space. This makes $E$ a metric space with metric $d(x,y) = \norm{x -y}, x,y \in E$ (i.e. norm could generate metric).
+
+\vspace{3pt}
 \begin{definition}\ \\
 A metric on E is a binary function $d(\cdot, \cdot): E \times E \to \R$ with the following properties ($x,y \in E$):
 \begin{itemize}
@@ -69,53 +75,64 @@ A metric on E is a binary function $d(\cdot, \cdot): E \times E \to \R$ with the
 \end{definition}
 \begin{examples}\ 
 \begin{enumerate}[label = (\alph*)]
-    \item Let $l_\infty$ be the space of bounded sequences $x = (x_1,x_2,\dots)$ with $x_j \in \R,\ j = 1,2,\dots$. Define $\norm{x} = \norm{x}_\infty = \sup_{j \geq 1} \abs{x_j}.$
-    \item Let $l_1$ be the space of absolutely summarable sequences $x = (x_1,x_2,\dots)$ s.t. $\sum_{j=1}^\infty \abs{x_j} < \infty$. $\norm{x} = \norm{x}_1 = \sum_{j = 1}^\infty \abs{x_j} < \infty$.
-    \item The space $C(K)$ or continuous functions $f: K \to \R$, where $K$ is a compact Hausdorff space. $\norm{f}_\infty = \sup_{x \in K} \abs{f(x)}$
+    \item Let $\ell_\infty$ be the space of bounded sequences $x = (x_1,x_2,\dots)$ with $x_j \in \R,\ j = 1,2,\dots$. Define $\norm{x} = \norm{x}_\infty = \sup_{j \geq 1} \abs{x_j}.$
+    \item Let $\ell_1$ be the space of absolutely summarable sequences $x = (x_1,x_2,\dots)$ s.t. $\sum_{j=1}^\infty \abs{x_j} < \infty$. Define $\norm{x} = \norm{x}_1 = \sum_{j = 1}^\infty \abs{x_j} < \infty$.
+    \item The space $C(K)$ or continuous functions $f: K \to \R$, where $K$ is a compact Hausdorff space. Define $\norm{f}_\infty = \sup_{x \in K} \abs{f(x)}$
 \end{enumerate}
-It can be seen that $l_1 \subset l_\infty,\ \norm{x}_\infty \leq \norm{x}_1$.
+It can be seen that $\ell_1 \subset \ell_\infty$, as $\norm{x}_\infty \leq \norm{x}_1$.
 \end{examples}
 
+\vspace{6pt}
 \subsection{Geometry of Normed Spaces}
 \begin{definition}\ \\
-A (closed) ball centered at a point $x_0 \in E$ with radius $r > 0$ is the set $B(x,r) := \{x \in E: \norm{x - x_0} \leq r\}$.\\ The sphere centered at $x_0$ with radius $r > 0$ is the set $S(x_0; r) := \{ x \in E: \norm{x - x_0} = r\}$. i.e. $S(x_0;r)$ is the "Boundary" of $B(x_0; r)$. $S(x_0;r) = \partial B(x_0;r)$. 
+A (closed) ball centered at a point $x_0 \in E$ with radius $r > 0$ is the set $B(x,r) := \{x \in E: \norm{x - x_0} \leq r\}$.\\ The sphere centered at $x_0$ with radius $r > 0$ is the set $S(x_0; r) := \{ x \in E: \norm{x - x_0} = r\}$. i.e. $S(x_0;r)$ is the "Boundary" of $B(x_0; r)$, $S(x_0;r) = \partial B(x_0;r)$. 
 \end{definition}
 
-\begin{remark}
-Balls can have different geometries on the properties of the norm. Unit ball centered at origin for $\norm{\cdot}_\infty$ is just a "square" centered at $0$. Unit ball for $\norm{\cdot}$ is also a "square". $B(0,1) = \{x = (x_1,x_2,\dots): -1 < y_\ep < 1,\ \forall\ \ep\}$, $y_\ep = \sum_{j = 1}^\infty \ep_j x_j,\ \ep_j = \pm 1$. It can be shownshown different norms give different geometry.
-However, They have important common features, most notably convexity properties.
+\begin{remark}\ \\
+Balls can have different geometries on the properties of the norm. Unit ball centered at origin for $\norm{\cdot}_\infty$ is just a "square" centered at $0$. Unit ball for $\norm{\cdot}_1$ is also a "square". $B(0,1) = \{x = (x_1,x_2,\dots): -1 < y_\ep < 1,\ \forall\ \ep\}$, $y_\ep = \sum_{j = 1}^\infty \ep_j x_j,\ \ep_j = \pm 1$. It can be shown that different norms give different geometry.
+However, they have important common features, most notably convexity properties.
 \end{remark}
 
 \begin{definition}\ \\
-A set $K \subset E$ is convex ($E$ linear space) if $x,y \in L$ and $0 \leq \lambda \leq 1$, $\lambda x + (1 - \lambda) y \in K$.
+A set $K \subset E$ is convex ($E$ linear space) if $\forall\ x,y \in K$, $\forall\ 0 \leq \lambda \leq 1$, $\lambda x + (1 - \lambda) y \in K$.
 \end{definition}
 \begin{remark}
-i.e. $x,y \in E$, then the line segment joining $x$ and $y$ in in $K$.
+i.e. $x,y \in E$, then the line segment joining $x$ and $y$ is in $K$.
 \end{remark}
 
-\begin{definition}
+\begin{definition}\ \\
 $f: E \to \R$ is a convex function if $f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda) f(y)$ for $x,y \in E,\ 0 \leq \lambda \leq 1$.
 \end{definition}
 \begin{remark}
 If $f: E \to \R$ is a convex function, then for any $M \in \R$ the set $\{x \in E: f(x) \leq M\}$ is convex.
 \end{remark}
 
+\vspace{3pt}
 \begin{proposition}\ \\
 Let $(E, \norm{\cdot})$ be a normed linear space, then the function $x \to \norm{x},\ x \in E$ is convex and continuous. 
 \end{proposition}
+\clearpage
 \begin{proof}\ \\
-    Let $f: E \to \R$ be $f(x) = \norm{x}$, $f(x) - f(y) = \norm{x} - \norm{y} \leq \norm{x - y}$ by triangle inequality $\Rightarrow$ $\abs{f(x) - f(y)} \leq \norm{x - y},\ x,y \in E$ $\Rightarrow$ $f(\cdot)$ is \underline{Lipschitz continuous}.\\
+    Let $f: E \to \R$ be $f(x) = \norm{x}$, $f(x) - f(y) = \norm{x} - \norm{y} \leq \norm{x - y}$ by triangle inequality $\Rightarrow$ 
+    \begin{equation*}
+        \abs{f(x) - f(y)} \leq \norm{x - y},\ x,y \in E
+    \end{equation*}
+    $\Rightarrow$ $f(\cdot)$ is \underline{Lipschitz continuous}.\\
     For convexity, let $0 < \lambda < 1$, then
     \begin{align*}
         f(\lambda x + (1 - \lambda)y) &= \norm{\lambda x + (1-\lambda )y} \leq \norm{\lambda x} + \norm{(1 - \lambda)y} \\&= \lambda \norm{x} + (1 - \lambda)\norm{y}\\ &= \lambda f(x) + (1-\lambda) f(y).
     \end{align*}
 \end{proof}
 \begin{remark}\ \\
-$f(\cdot)$ continuous implies the closed ball $B(x_0; r) = \{x \in E: \norm{x - x_0} \leq r\} = \{x \in E: f(x - x_0) \leq r\}$ is closed in topology of $E$. $f$ convex $\Rightarrow$ $B(x_0;r)$ convex.
+$f(\cdot)$ continuous implies the closed ball 
+\begin{equation*}
+    B(x_0; r) = \{x \in E: \norm{x - x_0} \leq r\} = \{x \in E: f(x - x_0) \leq r\}
+\end{equation*} 
+is closed in topology of $E$. $f$ convex $\Rightarrow$ $B(x_0;r)$ convex.
 \end{remark}
 \begin{remark}\ \\
-$f: E \to \R$ convex $\Rightarrow$ $\{x \in E: f(x) \leq M\}$ is also convex. However, it is possible to have non-convex functions $f(\cdot)$ such that sets $\{x \in E: f(x) \leq M\}$ are convex.
-\begin{example}
+$f: E \to \R$ convex $\Rightarrow$ the sub-level set $\{x \in E: f(x) \leq M\}$ is also convex. However, it is possible to have non-convex functions $f(\cdot)$ such that sets $\{x \in E: f(x) \leq M\}$ are convex.
+\begin{example}\ \\
 Take $f(x) = \abs{x}^p,\ x \in \R,\ p > 0$, then $f(\cdot)$ is convex if $p > 1$ and non-convex if $p < 1$. The sets $\{x \in \R: f(x) \leq M\}$ are all convex independent of $p$.
 \end{example}
 It is also possible to go in opposite direction if $f(\cdot)$ has the dilation property s.t. $f(\lambda x ) = \abs{\lambda} f(x)$.
@@ -137,13 +154,16 @@ $\Rightarrow$ $\norm{\frac{x}{\norm{x} + \norm{y}} + \frac{y}{\norm{x} + \norm{y
 \begin{remark}
 If $x \to \norm{x}$ satisfies (a) (b) and is a convex function, then it satisfies (c).
 \end{remark}
-Proof of triangle inequality: $\frac{1}{2} \norm{x + y} = \norm{\frac{x}{2} + \frac{y}{2}} \leq \frac{1}{2} (\norm{x} + \norm{y})$.
+Proof of triangle inequality using convexity: $\frac{1}{2} \norm{x + y} = \norm{\frac{x}{2} + \frac{y}{2}} \leq \frac{1}{2} (\norm{x} + \norm{y})$.
 \end{remark}
 
-\np Let $E$ be a normed space, $E_1$ a subspace of E, with the \underline{quotient space} $E/ E_1$. We can try to define a norm on $E / E_1$ by $$\norm{[x]} = \inf_{y \in E_1} \norm{x + y}.$$
+
+
+\vspace{6pt}
+\np Let $E$ be a normed space, $E_1$ be a subspace of E, with the \underline{quotient space} $E/ E_1$. We try to define a norm on $E / E_1$ by $$\norm{[x]} = \inf_{y \in E_1} \norm{x + y}.$$
 In this case, if $x \in \overline{E_1} - E_1$, then we may have $\norm{[x]} = 0$ but $[x] \neq 0 \in E/E_1$. Notice this is different from the finite dimension case. All finite dimension spaces $E_1$ are closed but not in general if $E_1$ has $\infty$-dimensions. 
 \begin{example}\ \\
-$l_1 (\R) = \{x = (x_1,x_2,\dots): x_i \in \R\}$ s.t. $\norm{x}_1 < \infty$, $\norm{x}_1 = \sum_{j = 1}^\infty \abs{x_j}$.\\ 
+$\ell_1 (\R) = \{x = (x_1,x_2,\dots): x_i \in \R\}$ s.t. $\norm{x}_1 < \infty$, $\norm{x}_1 = \sum_{j = 1}^\infty \abs{x_j}$.\\ 
 $E_1 = \{x = (x_1,x_2,\dots):\ x_j \in \R,\ \text{card}(\{x_j \neq 0,\ j = 1,2,\dots\}) < \infty \}$.\\ 
 It can be checked that $\overline{E_1} = l_1(\R)$.
 \end{example}
@@ -158,3 +178,7 @@ Let $(E, \norm{\cdot})$ be a normed space and $E_1 \subset E$, where $E_1$ is a 
         \item $\norm{[x] + [y]} = \inf_{x_1,y_1 \in E_1} \norm{x + y + x_1 + y_1} \leq \inf_{x_1 \in E_1} \norm{x + x_1} + \inf_{y_1 \in E_1} \norm{y + y_1} = \norm{[x]} + \norm{[y]}$.
     \end{enumerate}
 \end{proof}
+
+\begin{remark}\ \\
+In fact, since $E_1$ is a subspace, we have $[0] = E_1$, and thus $\norm{[x]} = \inf_{y \in E_1} \norm{x + y} = \inf_{x \in [x]} \norm{x}$. This is because $[x] = [x - y],\ \forall\ y \in E_1$.
+\end{remark}

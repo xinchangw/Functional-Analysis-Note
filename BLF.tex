@@ -7,13 +7,18 @@ $$\norm{f} = \sup_{\norm{x} = 1} \abs{f(x)} < \infty.$$
 By dilation and additive, properties of $f(\cdot)$ boundedness implies $\abs{f(x - y)} \leq \norm{f} \norm{x - y},\ x,y \in E$. Hence, $f(\cdot)$ is continuous and in fact Lipschitz continuous. Conversely, if a linear functional is continuous then it is bounded. 
 \end{definition}
 \begin{proof}\ \\
-Suppose $f(\cdot)$ is not bounded $\Rightarrow$ $\exists$ sequence $(x_n) \subset E$ s.t. $\abs{f(x_n)} \geq n \norm{x_n},\ n=1,2,\dots$. By linearity, $\abs{f(\frac{x_n}{n \norm{x_n}})} \geq 1,\ n=1,2,\dots$, but $\lim_{n \to \infty} \frac{x_n}{\norm{x_n}} = 0$ and $f(0) = 0$ $\Rightarrow$ $f(\cdot)$ is not continuous at $0$.
+Suppose $f(\cdot)$ is not bounded $\Rightarrow$ $\exists$ sequence $(x_n) \subset E$ s.t. $\abs{f(x_n)} \geq n \norm{x_n},\ n=1,2,\dots$. By linearity, $\abs{f(\frac{x_n}{n \norm{x_n}})} \geq 1,\ n=1,2,\dots$, but $\lim_{n \to \infty} \frac{x_n}{n\norm{x_n}} = 0$ and $f(0) = 0$ $\Rightarrow$ $f(\cdot)$ is not continuous at $0$.
 \end{proof}
 
+\vspace{3pt}
 \begin{definition}\ \\
     Let $E$ be a normed space, then space of all \underline{bounded linear functionals} on $E$ is known as the \underline{dual space $E^*$ of $E$}. It is also a normed space with norm $\norm{f} = \sup_{\norm{x} = 1} \abs{f(x)}$, and in fact a Banach space.
 \end{definition}
+\begin{remark}\ \\
+A well-known proposition is that for any space $B(X,Y)$, where $Y$ is Banach, then $B(X,Y)$ is also Banach.
+\end{remark}
 
+\vspace{3pt}
 \begin{definition}\ \\
     Let $E$ be a linear space and $H \subset E$ a subspace. We say $H$ is a hyperplane if $\text{codim}(H) = 1$, i.e. $\dim(\frac{E}{H}) = 1$. 
 \end{definition}
@@ -72,7 +77,7 @@ Let $\Hs$ be a Hilbert space.
     \item Let $f: \Hs \to \R \text{ or } \C$ be a bounded linear functional on $\Hs$. Let $H = \ker(f)$, and $H$ is closed.\\ Let $H^\perp$ be orthogonal complement of $H$ s.t. $\Hs = H \bigoplus H^\perp$. We have $\dim[\frac{\Hs}{H}] = 1$ \imply $\dim(H^\perp) = 1$.\\
     Therefore, we can write
     \begin{equation*}
-        \Hs = H + \vspan{x_0},\ \text{ for some } y_0 \in H^\perp.
+        \Hs = H + \vspan{y_0},\ \text{ for some } y_0 \in H^\perp.
     \end{equation*}
     Consider the map
     \begin{equation*}
@@ -90,7 +95,7 @@ Let $\Hs$ be a Hilbert space.
 \end{enumerate}
 \end{proof}
 
-
+\vspace{3pt}
 \begin{theorem}[Radon-Nikodym Theorem]\label{R-N thm}\ \\
 Let $\mu,\nu$ be two $\sigma$-finite measures s.t. $\nu \ll \mu$, i.e. $\nu$ is \underline{absolutely continuous} w.r.t. $\mu$. (i.e. $\mu(A) = 0$ \imply $\nu(A) = 0$) Then $\exists\ g \geq 0$ s.t. $g$ is $\mu$-integrable and $\nu(A) = \int_A g d\mu$ for measurable $A$, where $g$ is referred to as R-N Derivative $g = \frac{d\nu}{d \mu}$.
 \end{theorem}
@@ -132,9 +137,10 @@ R-N derivative $\frac{d\nu}{d\mu}$ is \underline{unique} since $\int_A g d\mu = 
 For $\Hs = \text{Hilbert space}$, \hyperref[RRT]{Riesz Representation Theorem} identifies the dual space $\Hs^*$ and can imply R-N Theorem.
 \end{remark}
 
+\vspace{3pt}
 \begin{corollary}\ \\   
 Consider spaces $\Ls^p(\Omega, \mu)$ for
-$1 \leq p < \infty$. R-N Theorem implies dual of $\Ls^p(\Omega, \mu)$ is $\Ls^{p'}(\Omega, \mu)$, where $\frac{1}{p} + \frac{1}{p'} = 1$ (also for $p=1,\ p' = +\infty$).
+$1 \leq p < \infty$. R-N Theorem implies dual of $\Ls^p(\Omega, \mu)$ is (isometric to) $\Ls^{p'}(\Omega, \mu)$, where $\frac{1}{p} + \frac{1}{p'} = 1$ (also for $p=1,\ p' = +\infty$).
 \end{corollary}
 \begin{proof}\
 \begin{itemize}
@@ -157,7 +163,7 @@ $1 \leq p < \infty$. R-N Theorem implies dual of $\Ls^p(\Omega, \mu)$ is $\Ls^{p
     \end{equation*}
     which implies
     \begin{equation*}
-      \norm{g}_{p'}^{p'} = \norm{g}_{p'} \norm{f}_p^p\ \Rightarrow\ \norm{F} = \norm{g}_{p'}.  
+      \norm{g}_{p'}^{p'} = \norm{g}_{p'} \norm{f}_p\ \Rightarrow\ \norm{F} = \norm{g}_{p'}.  
     \end{equation*}
     \begin{remark}
     Note $\sup_{\norm{f} = 1} \abs{F(f)}$ is attained for $1 < p < \infty$ with $f = g^{p'-1} \frac{\bar{g}}{\abs{g}}$, which shows $F$ is bounded and 
@@ -188,7 +194,7 @@ $1 \leq p < \infty$. R-N Theorem implies dual of $\Ls^p(\Omega, \mu)$ is $\Ls^{p
     \begin{equation*}
         F(f) = \int_{\Omega} fg d\mu
     \end{equation*}
-    for simple functions $f$. We can decompose $f = f^+ - f^-,\ g = g^+ - g^-$, find $(f_n^{\pm} \in \Ls^p)$ s.t. $f_n^{\pm} \uparrow f^{\pm}$, and apply MCT to four different cases, and thus we have
+    for simple functions $f$. Can assume $g \geq 0$ since $\nu = \nu^+ - \nu^-$ is a signed measure, and we can decompose it and apply R-N Theorem respectively. Then we can use MCT and $f = f^+ - f^-$ to extend the result s.t.
     \begin{equation*}
             F(f) = \int_{\Omega} fg d\mu
     \end{equation*}
@@ -216,8 +222,8 @@ $\Ls^1$ is a subset of the dual of $\Ls^\infty$, but not equal to it. Note if $F
 \begin{theorem}[Riesz Representation Theorem, v.2]\label{RRT2}\ \\
 Let $E = C(K)$ be the space of continuous functions on compact Hausdorff space $K$. Then,
 \begin{enumerate}[label = (\alph*)]
-    \item For every Borel regular signed measure on $K$, the functional $F(f) = \int_K f d\mu$ is a bounded linear functional on $K$.
-    \item Every bounded linear functional on $C(K)$ can be expressed in (a) for some measurable $\mu$, and $\norm{F} = \abs{\mu} (K)$, i.e. $\text{Tv}(K)$, where $\text{Tv}(\cdot)$ denotes the total variation. 
+    \item For every Borel regular signed measure $\mu$ on $K$, the functional $F(f) = \int_K f d\mu$ is a bounded linear functional on $K$.
+    \item Every bounded linear functional on $C(K)$ can be expressed in (a) for some measure $\mu$, and $\norm{F} = \abs{\mu} (K)$, i.e. $\text{Tv}(K)$, where $\text{Tv}(\cdot)$ denotes the total variation. 
 \end{enumerate}
 \end{theorem}
 
@@ -334,7 +340,7 @@ where $\ker{f} = \{x: f(x) = 1\}$. $H$ intersects $E$ into two disjoint subsets,
 and we also have $E = \{x: f(x) < 1\} \kup H \kup \{x: f(x) < 1\}$.
 \end{remark}
 \begin{remark}\ \\
-Tangent hyperplane $H$ is not necessarily unique. We can extend this to prove the existence supporting hyperplane for more general convex sets.
+Tangent hyperplane $H$ is not necessarily unique. We can extend this to prove the existence of supporting hyperplane for more general convex sets.
 \end{remark}
 
 \vspace{12pt}
@@ -364,8 +370,9 @@ Extend $f_0$ to a functional $f_x: E \to \R \text{ or } \C$ s.t. $\norm{f_x} = 1
 
 \np Conclude the embedding $E \to E^{**}$ is an isometry if the mapping is onto, say $E$ is a reference space.
 
+\vspace{6pt}
 \begin{theorem}[Second Dual Space]\ \\
-Let $E$ be a normed space, then $E$ can be considered as a linear subspace of $X^{**}$. For this, a vector $x \in E$ is considered as a bounded linear functional on $E^*$ via the action:
+Let $E$ be a normed space, then $E$ can be considered as a linear subspace of $E^{**}$. For this, a vector $x \in E$ is considered as a bounded linear functional on $E^*$ via the action:
 \begin{equation*}
     x: f \to f(x),\ f \in E^*.
 \end{equation*}
@@ -389,13 +396,13 @@ Let $E$ be a normed space, then $E$ can be considered as a linear subspace of $X
 \end{definition}
 
 \begin{proposition}\ \\
-If $E$ is a reflexive normed space, then every functional $f^* \in E^*$ attains its maximum on $E$.
+If $E$ is a reflexive normed space, then every functional $f \in E^*$ attains its maximum on $E$.
 \end{proposition}
 \begin{proof}\ \\
 E is reflexive and $f \in E^*$, then $\exists\ x_f \in E^{**} = E$ with $\norm{x_f} = 1$ and $\norm{f} = f(x_f)$, i.e. $\sup_{\norm{x} = 1} \abs{f(x)}$ is achieved at $x = x_f$. This follows from \hyperref[SHT]{Supporting Hyperplane Theorem}.
 \end{proof}
 
-\np To show a normed space $E$ is not reflexive, it suffices to find $f \in E^*$ s.t. $\sup_{\norm{x} = 1} \abs{f(x)}$ is note attained. 
+\np To show a normed space $E$ is not reflexive, it suffices to find $f \in E^*$ s.t. $\sup_{\norm{x} = 1} \abs{f(x)}$ is not attained. 
 
 \begin{example}\ \\
 Let $E = C([0,1]) = \text{ space of continuous functions } g: [0,1] \to \C$, and $\norm{g} = \sup_{0 \leq t\leq 1} \abs{g(t)}$. For $f \in E^*$, we define
@@ -409,6 +416,8 @@ where $h(x) = -1$ for $0  < x < \frac{1}{2}$, and $h(x) = 1$ for $\frac{1}{2} < 
 but sup is not attained.
 \end{example}
 
+
+\vspace{12pt}
 \subsection{Separating Hyperplane Theorem}
 \begin{remark}
 Separating Hyperplane Theorem is an extension of \hyperref[SHT]{Supporting Hyperplane Theorem}, generalizing to arbitrary convex sets.
@@ -525,16 +534,21 @@ By translation can assume WLOG $0 \in K$. Since $K$ is open, it is absorbing. Le
 \end{equation*}
 if $B(0,r) \subset K$. Proceed as in separation theorem for a unit ball. Define $f_0$ on $\vspan{x_0}$ by
 \begin{equation*}
-    f(tx_0) = t\norm{x_0},\ t \in \R,
+    f_0(tx_0) = t\norm{x_0}_K,\ t \in \R,
 \end{equation*}
 then if $E_0 = \{\lambda x_0:\ \lambda \in \R\}$, we have
 \begin{equation*}
     f_0(x) \leq \norm{x}_K,\ x \in E_0,
 \end{equation*}
 since \begin{equation*}
-    \norm{tx}_K = t \norm{x}_K,\ t \geq 0.
+    \norm{tx_0}_K = t \norm{x_0}_K,\ t \geq 0,
 \end{equation*}
-\hyperref[HB thm]{Hahn Banach Theorem} implies that we can extend $f_0$ to $f: E \to \R$ s.t.
+while for $t \leq 0$,
+\begin{equation*}
+    f_0(tx_0) = t f_0(x_0) \leq 0 \leq  \norm{t x_0}_K.
+\end{equation*}
+
+\np \hyperref[HB thm]{Hahn Banach Theorem} implies that we can extend $f_0$ to $f: E \to \R$ s.t.
 \begin{equation*}
     f(x) \leq \norm{x}_K \leq \frac{1}{r} \norm{x},\ x \in E,
 \end{equation*}
@@ -562,7 +576,7 @@ Note that $\sup_{\norm{v} = 1} f(v) > 0$, we have
 \end{proof}
 
 
-
+\vspace{3pt}
 \begin{theorem}[Separation of Convex Sets]\label{SepConvSets}\ \\
 Let $A,B$ be disjoint convex subsets of a normed space $E$,
 \begin{enumerate}[label = (\alph*)]
@@ -583,7 +597,7 @@ Let $A,B$ be disjoint convex subsets of a normed space $E$,
     \begin{equation*}
         K = A -B = \{a - b:\ a \in A,\ b \in B\},
     \end{equation*}
-    then $K$ is open, convex and $0 \in K$. By the previous theorem, $\exists\ f \in E$ s.t.
+    then $K$ is open, convex and $0 \not\in K$. By the previous theorem, $\exists\ f \in E$ s.t.
     \begin{equation*}
         f(a - b) < f(0) = 0,\ \forall\ a \in A,\ b \in B.
     \end{equation*}
@@ -965,9 +979,237 @@ i.e. $\vphi \equiv \text{constant}$ by ergodicity.
 
 \np Suppose $T: X \to Y$ bounded linear operator on Banach spaces, and $T$ is injective and surjective, i.e. $T^{-1}: Y \to X$ exists. \underline{Open Mapping Theorem} implies $T^{-1}$ is a bounded operator. The main input into argument is \underline{Baire Category Theorem}. 
 
+\vspace{3pt}
 \begin{definition}\ \\
 A set $S$ in a metric space $M$ is \underline{nowhere dense} (e.g. Cantor set) if its closure $\bar{S}$ has empty interior. 
 \end{definition}
+
+\vspace{3pt}
+\begin{proposition}[Baire Category]\label{BCT}\ \\
+A complete metric space is \underline{never} the union of a countable number of nowhere dense sets.
+\end{proposition}
+\begin{proof}\ \\
+Argue by contradiction. Assume $M = \cupp{n=1}{\infty} A_n$ with each $A_n$ nowhere dense.
+
+\np $A_1$ is nowhere dense $\Rightarrow$ can find $x_1 \in M - \bar{A_1}$.
+
+\np $\bar{A_1}$ closed $\Rightarrow$ can find open ball $B_1$ centered at $x_1$ with radius $\leq 1$ s.t. $B_1 \cap A_1 = \emp$.
+
+\np $A_2$ is nowhere dense $\Rightarrow$ $\exists\ x_2 \in B_1 - \bar{A_2}$.
+
+\np $\bar{A_2}$ closed so can find ball $B_2$ centered at $x_2$ with radius $\leq \frac{1}{2}$ s.t. $x_2 \in B_2 \subset \bar{B_2} \subset B_1$ and $B_2 \cap A_2 = \emp$.
+
+\np By induction can find a sequence $\{x_n\}_{n \geq 1}$ and open balls $(B_n)$ s.t.
+\begin{equation*}
+    x_{n+1} \in B_{n+1} \subset \bar{B}_{n+1} \subset B_n,\ B_n \text{ has radius smaller than }\frac{1}{2^{n-1}},
+\end{equation*}
+and $B_n \cap A_n = \emp$.
+
+\np The sequence $\{x_n\}$ is Cauchy, and $M$ is complete $\Rightarrow$ $x_\infty \in M$. Note that $x_\infty \in B_n,\ \forall\ n \geq 1$ $\Rightarrow$ $x_\infty \notin A_n,\ \forall\ n$.
+
+\np Hence, $M \neq \cupp{n=1}{\infty} A_n$, and we reach a contradiction.
+\end{proof}
+
+
+\vspace{3pt}
+\begin{theorem}[Open Mapping Theorem]\ \\
+Let $X,Y$ be Banach spaces and $T \in \Ls(X,Y)$. Assume $T$ is surjective (i.e. $T(X) = Y$), then $T$ maps open sets in $X$ to open sets $Y$.
+\end{theorem}
+\begin{proof}\ \\
+Let $B_x = \{x:\ \norm{x} \leq 1\}$ be a unit ball in $X$. Similarly $B_y$ be a unit ball in $Y$. It suffices to show 
+\begin{equation*}
+    T(B_x) \supset \vep B_Y,\ \text{for some } \vep > 0.
+\end{equation*}
+To see this let $U \subset X$, $U$ open and $y \in TU$. Need to show $TU$ contains a neighborhood of $y$. Let $x \in U,\ T x = y$, $U$ open $\Rightarrow$ $\exists\ \delta > 0$ s.t.
+\begin{equation*}
+    U \supset x + \delta B_X,\ TU \supset T(x + \delta B_X) = y+ \delta B_x \supset y + \delta \vep B_Y,
+\end{equation*}
+which show $TU$ contains neighborhood of $y$.
+
+\np It remains to show $TB_X \supset \vep B_Y$ for some $\vep > 0$. Observe that 
+\begin{equation*}
+    X = \cupp{n=1}{\infty} n B_X\ \Rightarrow\ Y = TX = \cupp{n=1}{\infty} nTB_X.
+\end{equation*}
+Baire Category Theorem implies $\exists\ n \geq 1$ s.t. $n\bar{TB_X}$ has mom-empty interior for some $n$, and thus $\bar{TB_X}$ has non-empty interior. Hence $\exists\ y \in Y,\ \delta > 0$ s.t.
+\begin{equation*}
+    y + \delta B_Y \subset \bar{TB_X}.
+\end{equation*}
+$TX = Y\ \Rightarrow\ \exists\ x \in X$ s.t. $Tx = y$, and thus
+\begin{equation*}
+    \delta B_Y \subset \bar{T(B_X - x)}.
+\end{equation*}
+In addition, $B_X - x \subset n B_X$ for some $n \geq 1$, and thus
+\begin{equation*}
+    \delta B_Y \subset n \bar{TB_X},
+\end{equation*}
+which implies $\bar{TB_X \supset \vep B_Y}$ for some $\vep > 0$.
+
+\np Finally show $\bar{TB_X} \subset T(2B_X)$ $\Rightarrow$ $TB_X \supset \frac{\vep}{2} B_Y$. For some $\vep > 0$ we have $\bar{TB_X} \supset \vep B_Y$, can conclude $\bar{TB_X} \subset T (2B_X)$.
+
+\np Use scaling argument, let $y \in \bar{TB_X}$, then $\exists\ x_1 \in B_X$ s.t.
+\begin{equation*}
+    y - Tx_1 \in  \frac{\vep}{2} B_Y \subset T(\frac{1}{2} B_X).
+\end{equation*}
+Next choose $x_2 \in \frac{1}{2} B_X$ s.t.
+\begin{equation*}
+    y - Tx_1 - Tx_2 \in \frac{\vep}{4} B_Y \subset \bar{T(\frac{1}{4}B_X)}.
+\end{equation*}
+By induction construct sequence $\{x_n\}_{n \geq 1}$ s.t.
+\begin{equation*}
+    x_n \in \frac{1}{2^{n-1}}B_X,\ y - \summ{j=1}{n} Tx_j \in \frac{\vep}{2^n} B_Y.
+\end{equation*}
+Then $x = \summ{j=1}{\infty} x_n \in 2B_X$, and $Tx = y$.
+\end{proof}
+
+
+\vspace{3pt}
+\begin{corollary}[Inverse Mapping Theorem]\ \\
+Let $T:X \to Y$ be a bounded linear operator between Banach spaces $X$ and $Y$, which is both injective and surjective, then $T$ has a bounded inverse $T^{-1} \in \Ls(Y,X)$.
+\end{corollary}
+
+
+\vspace{3pt}
+\begin{corollary}\ \\
+Suppose $X,Y$ are Banach spaces, $T \in \Ls(X,Y)$, then the following are equivalent:
+\begin{enumerate}[label = (\alph*)]
+    \item $T$ is injective and $\Im{T}$ is closed.
+    \item $T$ is bounded below: $\exists\ c > 0,\ \norm{Tx} \geq c \norm{x},\ x\in X$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}\ \\
+\begin{itemize}
+    \item $\Rightarrow:$\ \\
+    $T^{-1}: \Im{T} \to X$ is bounded since $\Im{T}$ is Banach space. From Open Mapping Theorem, 
+\begin{equation*}
+    \norm{T^{-1} y} \leq c^{-1} \norm{y},\ y \in \Im{T},\ c > 0, \text{ some constant}.
+\end{equation*}
+Set $y = Tx$, we have $\norm{Tx} \geq c\norm{x},\ x \in X$. Hence (b) holds.
+    \item $\Leftarrow:$\ \\
+    Suppose (b) holds, we have $T$ is injective (i.e. $Tx = 0$ $\Rightarrow$ $x = 0$). To see this $\Im{T}$ closed, and let $(x_n) \subset X$ be a sequence s.t. $(Tx_n)$ is Cauchy. By
+    \begin{equation*}
+        \norm{Tx_n - Tx_m} \geq c\norm{x_n - x_m},\ \forall\ n,m,
+    \end{equation*}
+    we have $(x_n)$ is Cauchy, and hence $x_n \to x_\infty \in X$, which implies $Tx_n \to Tx_\infty \in \Im{T}$. Can conclude $\Im{T}$ is closed.
+\end{itemize}
+\end{proof}
+
+
+\subsection{Closed Graph Theorem}
+
+\begin{definition}\ \\
+For $T \in \Ls(X,Y)$, $X,Y$ are Banach spaces. The graph of $T$ is defined as
+\begin{equation*}
+    \Gamma(T):= \{(x,Tx):\ x \in X\} \subset X \times Y.
+\end{equation*}
+It is closed provided it is a closed subspace of $X \times Y$. Hence if $\{x_n\}_{n \geq 1}$ is a sequence in $X$ s.t. both $\{x_n\}_{n \geq 1}$ and $\{Tx_n\}_{n \geq 1}$ are Cauchy, then $\exists\ x_\infty \in X$ s.t.
+\begin{equation*}
+    x_n \to x_\infty,\ Tx_n \to Tx_\infty\ \&\ y_\infty = Tx_\infty.
+\end{equation*}
+\end{definition}
+
+
+\vspace{3pt}
+\begin{proposition}[Closed Graph Theorem]\ \\
+Let $T: X \to Y$ be a linear operator between Banach spaces $X$ and $Y$, then $T$ is bounded (continuous) if and only if $\Gamma(T)$ is closed.
+\end{proposition}
+\begin{proof}\ \\
+$T$ bounded implies $\Gamma(T)$ closed trivially.
+
+\np Now assume $\Gamma(T)$ is closed, which implies $\Gamma(T)$ is a Banach space. Then use Open Mapping Theorem. Define norm on $X \times F$ by $\norm{(x,y)} = \norm{x} + \norm{y}$, and $\Gamma(T)$ is Banach space with this norm. Define $u: \Gamma(T) \to X,\ u(x,Tx) = x,\ x \in X$, then $u$ is bounded $\norm{u} \leq 1$, and bijective.
+
+\np Open Mapping Theorem implies $u^{-1}: X \to \Gamma(T)$ is bounded. Hence $\norm{u(x, Tx)} \geq c\norm{(x, Tx)},\ x \in X$ for some $c > 0$, i.e. 
+\begin{equation*}
+    \norm{x} \geq c[\norm{x} + \norm{Tx}]\ \Rightarrow\ \norm{Tx} \leq (\frac{1}{c} - 1) \norm{x},\ x \in X,
+\end{equation*}
+which implies $T$ is bounded.
+\end{proof}
+
+
+\vspace{3pt}
+\begin{proposition}[Hellinger-Toeplitz]\ \\
+$T: \Hs \to \Hs$ is a linear operator, which is \underline{self-adjoint}, i.e.
+\begin{equation*}
+    \inprod{Tx}{y} = \inprod{x}{Ty},\ x,y \in \Hs,
+\end{equation*}
+then $T$ is bounded.
+\end{proposition}
+\begin{proof}
+Show that self-adjoint $\Rightarrow$ $\Gamma(T)$ is closed. Let $\{x_n\}_{n \geq 1} \in \Hs$ s.t.
+\begin{equation*}
+    x_n \to x_\infty \in \Hs,\ Tx_n \to y_\infty \in \Hs.
+\end{equation*}
+Need to show $Tx_\infty = y_\infty$. Use \underline{self-adjointness} of $T$. For $x \in \Hs$,
+\begin{align*}
+    \inprod{z}{y_\infty} &= \lim_{n \to \infty} \inprod{z}{Tx_n}\\
+    &= \lim_{ n \to \infty} \inprod{Tz}{x_n}\\
+    &= \inprod{Tz}{ x_\infty}\\
+    &= \inprod{z}{Tx_\infty}
+\end{align*}
+holds for all $z \in \Hs\ \Rightarrow\ Tx_\infty = y_\infty$. Hence $\Gamma(T)$ is closed and $T$ is bounded.
+\end{proof}
+
+
+\vspace{3pt}
+\begin{proposition}[Uniform Boundedness Theorem]\ \\
+Let $X,Y$ be Banach spaces, and $\Ts \in \Ls(X,Y)$ a family of operators $X \to Y$ s.t.
+\begin{equation*}
+    \sup_{T \in \Ts} \norm{Tx} < \infty,\ \forall\ x \in X \ \Rightarrow\ \sup_{T \in \Ts} \norm{T} < \infty.
+\end{equation*}
+\end{proposition}
+\begin{proof}\ \\
+Define $M: X \to \R$ by
+\begin{equation*}
+    M(x) = \sup_{T \in \Ts} \norm{Tx},\ x \in X.
+\end{equation*}
+Then $X = \cupp{n=1}{\infty} X_n$ where $X_n = \{x \in X:\ M(x) \leq n\}$. By \hyperref[BCT]{Baire Category Theorem}, there exists $n \geq 1$ s.t.
+\begin{center}
+    $\bar{X_n}$ has non-empty interior.
+\end{center}
+Note the functional $x \to M(x),\ x \in X$ is lower semi-continuous, i.e. $M(x) \leq \liminf_{x_n \to x} M(x_n)$. Therefore,
+\begin{equation*}
+    \norm{Tx} \leq \lim_{n \to \infty} \norm{Tx_n} \leq \liminf_{n\to \infty}M(x_n).
+\end{equation*}
+Take sup over $x$, we get
+\begin{equation*}
+    M(x) \leq \liminf_{n \to \infty} M(x_n).
+\end{equation*}
+
+\np Hence, $X_n = \{x \in X:\ M(x) \leq n\}$ is closed. Thus $\bar{X_n} = X_n$, can conclude $X_n$ has non-empty interior. Therefore, $X_n \supset X_0 + \vep B_x$ for some $\vep > 0$, where $B_x = \{x \in X:\ \norm{x} \leq 1\}$. 
+
+\np Note $M(\cdot)$ is symmetric and convex, we have
+\begin{align*}
+    M(-x) &= M(x),\ x \in X,\\
+    M(\lambda x + (1-\lambda)y) &\leq \lambda M(x) + (1 - \lambda) M(y),\ x,y \in X,\ 0 < \lambda < 1.
+\end{align*}
+Hence $X_n \supset X_0 + \vep B_x$, and the symmetry implies $X_n \supset - X_0 + \vep B_x$. By convexity, we know $X_n \supset \vep B_x$. Therefore, we can conclude 
+\begin{equation*}
+    \norm{x} \leq \vep \Rightarrow \sup_{T \in \Ts} \norm{Tx} \leq n \Rightarrow \sup_{T \in \Ts} \norm{T} \leq \frac{n}{\vep}.
+\end{equation*}
+\end{proof}
+
+
+\vspace{3pt}
+\begin{corollary}[Weak Boundedness implies Strong Boundedness]\ \\
+    Let $A \subset X$ and suppose $A$ is weakly bounded (i.e $\sup_{f \in X^*} \abs{f(x)} < \infty,\ \forall\ x \in A$), then $A$ is strongly bounded (i.e $\sup_{x \in A} \norm{x} < \infty$).
+\end{corollary}
+\begin{proof}\ \\
+Embed $A$ into $A^** \subset X^{**}$, $x \to x^{**}$, 
+\begin{equation*}
+    \sup_{x^{**} \in A^{**}} \abs{x^{**} (f)} < \infty,\ \forall\ f \in X^*.
+\end{equation*}
+Hence uniform boundedness principle implies
+\begin{equation*}
+    \sup_{x^{**} \in A^{**}} \norm{x^{**}} < \infty.
+\end{equation*}
+\hyperref[HB thm]{Hahn Banach Theorem} implies
+\begin{equation*}
+    \norm{x^{**}} = \norm{x},\ x \in X.
+\end{equation*}
+\end{proof}
+
+
+
+
 
 
 
